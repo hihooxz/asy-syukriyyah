@@ -112,15 +112,31 @@ class Mkepegawaian extends CI_Model {
 
 		function select_data($id){
 			$this->db->select('gelar_depan,nama_lengkap,gelar_belakang,jenis_kelamin,alamat_tinggal,handphone,jabatan,unit_kerja,status_kepegawaian,fungsi,mulai_tugas,foto_pegawai,alamat_ktp,tempat_lahir,tanggal_lahir
-			,agama,alamat_ktp,rt_ktp,rw_ktp,kelurahan_ktp,kecamatan_ktp,kota_ktp,rt_tinggal,rw_tinggal,kota_tinggal,kecamatan_tinggal,kelurahan_tinggal,no_telepon,handphone');
+			,agama,alamat_ktp,rt_ktp,rw_ktp,kelurahan_ktp,kecamatan_ktp,kota_ktp,rt_tinggal,rw_tinggal,kota_tinggal,kecamatan_tinggal,kelurahan_tinggal,no_telepon,handphone
+			,pendidikan_terakhir,nama_pt,pendidikan_ditempuh,program_pd,jurusan_pd,tahun_masuk_pd,nama_pt_pd,unit_kerja_sebelumnya,status_sertifikasi,pengangkatan_calon_tetap,pengangkatan_tetap,sertifikasi_pendidik
+			');
 			$this->db->where('pegawai.id_pegawai',$id);
 		  $this->db->join('riwayat_kerja','pegawai.id_pegawai = riwayat_kerja.id_pegawai');
+			$this->db->join('pendidikan','pegawai.id_pegawai = pendidikan.id_pegawai ');
+			//$this->db->join('keluarga','keluarga.id_pegawai = keluarga.id_pegawai');
 		$query = $this->db->get('pegawai');
 	if($query->num_rows()>0)
 		return $query->result();
 	else return false;
 
 		}
+
+		function pilih_data($id){
+			$this->db->select('nonformal.tahun,nonformal.lamanya,nonformal.jenis,nonformal.diutus');
+			//$this->db->where('nonformal.id_nonformal',$id);
+			$this->db->join('pendidikan','nonformal.id_nonformal = pendidikan.id_pendidikan ');
+		$query = $this->db->get('nonformal');
+	if($query->num_rows()>0)
+		return $query->result();
+	else return false;
+
+		}
+
 
 		function get_foto($id){
 			$this->db->select('foto_pegawai');

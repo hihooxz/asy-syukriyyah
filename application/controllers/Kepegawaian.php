@@ -1218,8 +1218,9 @@ class Kepegawaian extends CI_Controller {
 			 // Generate PDF by saying hello to the world
 			$id = $this->uri->segment(3);
 	        $a = array('a'=>$this->mky->select_data($id));
-					$b=  array('b'=>$this->mky->get_foto($id));;
-					$res['data'] = array_merge($a, $b);
+					$b=  array('b'=>$this->mky->get_foto($id));
+					$c=	 array('c'=>$this->mky->pilih_data($id));
+					$res['data'] = array_merge($a, $b,$c);
 	        $this->load->view('admin/pegawai/download',$res);
 		}
 }

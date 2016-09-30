@@ -25,7 +25,11 @@ class PDF extends FPDF
 	function Content($data)
 	{
 									$image1 = "asset/asset_index/images/logo_atas.png";
-									$image2 = $data['b']['foto_pegawai'];
+									if($data['b']['foto_pegawai']!="")
+										$image2 = $data['b']['foto_pegawai'];
+									else {
+										$image2 = "asset/asset_index/images/user1.png";
+									}
 	                $this->setFont('Arial','B',10);
 									$this->Cell( 40, 40, $this->Image($image1, $this->GetX(), $this->GetY(), 20.28), 0, 0, 'L', false );
 									$this->Cell(130);
@@ -74,6 +78,54 @@ class PDF extends FPDF
 			                          $uk = "STAI";
 			                        else if($rows->unit_kerja == 13)
 			          								$uk = "Lainnya";
+																if( $rows->pendidikan_terakhir == 0)
+					                        $pk = "Tidak Sekolah";
+					                      else if( $rows->pendidikan_terakhir == 1)
+					                        $pk = "SD";
+					                      else if( $rows->pendidikan_terakhir == 2)
+					                        $pk = "SMP";
+					                      else if( $rows->pendidikan_terakhir == 3)
+					                        $pk = "SMA";
+					                      else if( $rows->pendidikan_terakhir == 4)
+					                        $pk = "D1";
+					                      else if( $rows->pendidikan_terakhir == 5)
+					                        $pk = "D2";
+					                      else if( $rows->pendidikan_terakhir == 6)
+					                        $pk = "D3";
+					                      else if( $rows->pendidikan_terakhir == 7)
+					                        $pk = "D4";
+					                      else if( $rows->pendidikan_terakhir == 8)
+					                        $pk = "S1";
+					                      else if( $rows->pendidikan_terakhir == 9)
+					                        $pk = "S2";
+					                      else if( $rows->pendidikan_terakhir == 10)
+					                        $pk = "S3";
+					                      else if( $rows->pendidikan_terakhir == 11)
+					                        $pk = "Paket B, C";
+																	if( $rows->pendidikan_ditempuh == 0)
+																	  $pdt = "Tidak Sekolah";
+																	else if( $rows->pendidikan_ditempuh == 1)
+																	  $pdt = "SD";
+																	else if( $rows->pendidikan_ditempuh == 2)
+																	  $pdt = "SMP";
+																	else if( $rows->pendidikan_ditempuh == 3)
+																	  $pdt = "SMA";
+																	else if( $rows->pendidikan_ditempuh == 4)
+																	  $pdt = "D1";
+																	else if( $rows->pendidikan_ditempuh == 5)
+																	  $pdt = "D2";
+																	else if( $rows->pendidikan_ditempuh == 6)
+																	  $pdt = "D3";
+																	else if( $rows->pendidikan_ditempuh == 7)
+																	  $pdt = "D4";
+																	else if( $rows->pendidikan_ditempuh == 8)
+																	  $pdt = "S1";
+																	else if( $rows->pendidikan_ditempuh == 9)
+																	  $pdt = "S2";
+																	else if( $rows->pendidikan_ditempuh == 10)
+																	  $pdt = "S3";
+																	else if( $rows->pendidikan_ditempuh == 11)
+																	  $pdt = "Paket B, C";
 												if($rows->fungsi == 1)$fn = "Guru / Tenaga Pendidik";else if($rows->fungsi == 2) $fn = "Non Guru / Non Tenaga Pendidik";
 												if($rows->rt_ktp <= 9){
 
@@ -86,7 +138,18 @@ class PDF extends FPDF
 													$rt_ktp = $rows->rt_ktp;
 
 												}
-                        $this->setFont('Arial','',10);
+												if($rows->tahun_masuk_pd != "0000-00-00"){
+			          					$tmd = date('d M Y',strtotime($rows->tahun_masuk_pd));
+			          				}
+			          				else $tmd = "-";
+												if($rows->pengangkatan_calon_tetap != "0000-00-00"){
+			          					$pct = date('d M Y',strtotime($rows->pengangkatan_calon_tetap));
+			          				}
+			          				else $pct = "-";
+												if($rows->pengangkatan_tetap != "0000-00-00"){
+			          					$pta = date('d M Y',strtotime($rows->pengangkatan_tetap));
+			          				}
+			          				else $pta = "-";
                         $this->Ln(20);
                         $this->setFont('Arial','',10);
                         $this->setFillColor(255,255,255);
@@ -105,7 +168,9 @@ class PDF extends FPDF
 												$this->cell(36,10,'Agama',1,0,'L',1);
 												$this->cell(36,10,$rows->agama,1,1,'L',1);
 												$this->cell(36,10,'Alamat KTP',1,0,'L',1);
-												$this->cell(146,10,$rows->alamat_ktp,1,1,'L',1);
+												$this->cell(146,10,substr($rows->alamat_ktp,0,100),1,1,'L',1);
+												$this->cell(36);
+												$this->cell(146,10,substr($rows->alamat_ktp,100,150),1,1,'L',1);
 												$this->cell(20);
 												$this->cell(16,10,'RT',1,0,'L',1);
 												$this->cell(16,10,$rows->rt_ktp,1,0,'L',1);
@@ -121,7 +186,9 @@ class PDF extends FPDF
 												$this->cell(28,10,'Kota',1,0,'L',1);
 												$this->cell(36,10,$rows->kota_ktp,1,1,'L',1);
 												$this->cell(36,10,'Alamat Tinggal',1,0,'L',1);
-												$this->cell(146,10,$rows->alamat_tinggal,1,1,'L',1);
+												$this->cell(146,10,substr($rows->alamat_tinggal,0,80),1,1,'L',1);
+												$this->cell(36);
+												$this->cell(146,10,substr($rows->alamat_tinggal,80,150),1,1,'L',1);
 												$this->cell(20);
 												$this->cell(16,10,'RT',1,0,'L',1);
 												$this->cell(16,10,$rows->rt_tinggal,1,0,'L',1);
@@ -142,13 +209,112 @@ class PDF extends FPDF
 												$this->cell(36);
 												$this->cell(36,10,'Handphone',1,0,'L',1);
 												$this->cell(36,10,$rows->handphone,1,1,'L',1);
-
-
+												$this->ln(100);
+												$this->cell(36,10,'Nama Lengkap ',1,0,'L',0);
+												$this->cell(36,10,$rows->nama_lengkap,1,1,'L',1);
+												$this->cell(36,10,'Pendidikan Terakhir ',1,0,'L',0);
+												$this->cell(36,10,$pk,1,1,'L',1);
+												$this->Ln(5);
+                        $this->setFont('Arial','',10);
+                        $this->setFillColor(230,230,200);
+                        $this->cell(40,6,'Tingkat',1,0,'C',1);
+                        $this->cell(60,6,'Nama Sekolah/PT',1,0,'C',1);
+												$this->cell(40,6,'Tahun',1,0,'C',1);
+                        $this->cell(40,6,'Program Jurusan',1,1,'C',1);
+                        $this->setFillColor(255,255,255);
+												$this->cell(40,6,$pk,1,0,'C',1);
+												$this->cell(60,6,$rows->nama_pt,1,0,'C',1);
+                        $this->cell(40,6,$tmd,1,0,'C',1);
+                        $this->cell(40,6,$rows->jurusan_pd,1,1,'C',1);
+												$this->ln(5);
+												$this->cell(49,10,'Pendidikan Yang Di Tempuh ',1,0,'L',0);
+												$this->cell(36,10,$pdt,1,1,'L',1);
+												$this->ln(8);
+												$this->setFont('Arial','',8);
+												$this->cell(30,6,"Diutus oleh Asy-Syukriyyah",0,1,'L',1);
+												$this->setFont('Arial','',10);
+												$this->setFillColor(230,230,200);
+												$this->cell(40,6,'Tahun',1,0,'C',1);
+												$this->cell(60,6,'lamanya',1,0,'C',1);
+												$this->cell(40,6,'Jenis',1,0,'C',1);
+												$this->cell(40,6,'Diutus',1,1,'C',1);
+												if($data['c']!=FALSE){
+												foreach ($data['c'] as $rows) {
+	                        $this->setFillColor(255,255,255);
+													$this->cell(40,6,$rows->tahun,1,0,'C',1);
+													$this->cell(60,6,$rows->lamanya,1,0,'C',1);
+	                        $this->cell(40,6,$rows->jenis,1,0,'C',1);
+	                        $this->cell(40,6,$rows->diutus,1,1,'C',1);
                         // width,height,data,border 1= border 0 = no border,enter 0 = no enter 1 = enter 2 = enter nyesuain, paragraph
+												}
+											}
+											else{
+
+											}
+
+											$this->ln(50);
+											$this->setFont('Arial','',8);
+											$this->setFillColor(255,255,255);
+											$this->cell(30,6,"Eksternal Asy-Syukriyyah atau diutus oleh Lembaga lain atau inisiatif sendiri",0,1,'L',1);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(230,230,200);
+											$this->cell(40,6,'Tahun',1,0,'C',1);
+											$this->cell(60,6,'lamanya',1,0,'C',1);
+											$this->cell(40,6,'Jenis',1,0,'C',1);
+											$this->cell(40,6,'Diutus',1,1,'C',1);
+											$this->ln(150);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(255,255,255);
+											$this->cell(46,10,'Unit Kerja Sekarang ',1,0,'L',0);
+											$this->cell(36,10,$uk,1,1,'L',1);
+											$this->cell(46,10,'Unit Kerja Sebelumnya ',1,0,'L',1);
+											$this->cell(36,10,$rows->unit_kerja_sebelumnya,1,1,'L',1);
+											$this->cell(46,10,'Mulai Bertugas ',1,0,'L',1);
+											$this->cell(36,10,date(' Y',strtotime($rows->mulai_tugas)),1,1,'L',1);
+											$this->cell(46,10,'Status Kepegawaian ',1,0,'L',1);
+											$this->cell(36,10,$sk,1,1,'L',1);
+											$this->setFont('Arial','',8);
+											$this->ln(2);
+											$this->cell(30,6,"Bagi Pegawai Tetap dan Calon Pegawai Tetap",0,1,'L',1);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(255,255,255);
+											$this->cell(77,10,'Pengangkatan Sebagai Calon Pegawai Tetap ',1,0,'L',1);
+											$this->cell(46,10,$pct,1,1,'L',1);
+											$this->cell(77,10,'Pengangkatan Sebagai Pegawai Tetap ',1,0,'L',1);
+											$this->cell(46,10,$pta,1,1,'L',1);
+											$this->ln(5);
+											$this->cell(36,10,'Fungsi ',1,0,'L',1);
+											$this->cell(56,10,$fn,1,1,'L',1);
+											$this->cell(36,10,'Sertifikasi Pendidik ',1,0,'L',1);
+											$this->cell(56,10,$rows->sertifikasi_pendidik,1,1,'L',1);
+											$this->Ln(5);
+											$this->setFont('Arial','',8);
+											$this->cell(40,6,'Riwayat Jabatan di Asy-Syukriyyah',0,1,'L',1);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(230,230,200);
+											$this->cell(40,6,'Tahun',1,0,'C',1);
+											$this->cell(60,6,'Unit',1,0,'C',1);
+											$this->cell(40,6,'Jabatan',1,1,'C',1);
+											$this->setFillColor(255,255,255);
+											$this->cell(40,6,date(' Y',strtotime($rows->mulai_tugas)),1,0,'C',1);
+											$this->cell(60,6,$uk,1,0,'C',1);
+											$this->cell(40,6,$rows->jabatan,1,1,'C',1);
+											$this->Ln(5);
+											$this->setFont('Arial','',8);
+											$this->cell(40,6,' Riwayat Pekerjaan dan Jabatan Selain di Asy-Syukriyyah',0,1,'L',1);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(230,230,200);
+											$this->cell(30,6,'Tahun',1,0,'C',1);
+											$this->cell(60,6,'Nama Instansi/Lembaga',1,0,'C',1);
+											$this->cell(30,6,'Jabatan',1,0,'C',1);
+											$this->cell(60,6,'Alasan Berhenti/keluar',1,1,'C',1);
+											$this->setFillColor(255,255,255);
 
 
 
-                        $ya = $ya + $rw;
+
+
+												$ya = $ya + $rw;
                 }
 
 	}
@@ -170,4 +336,4 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->Content($data);
-$pdf->Output();
+$pdf->Output('','Data Pegawai Asy-syukriyyah '.date('YmdHis').'.pdf');
