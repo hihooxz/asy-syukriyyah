@@ -44,6 +44,13 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Full Name
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" name="fullname" value="<?php echo set_value('fullname')?>">
+            </div>
+          </div>
+          <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Email
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">

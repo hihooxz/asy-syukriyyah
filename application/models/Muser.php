@@ -30,6 +30,7 @@ class Muser extends CI_Model {
         'username' => $data['username'],
         'password' => md5($data['password']),
         'email' => $data['email'],
+				'fullname' => $data['fullname'],
         'date_register' => date('Y-m-d H:i:s'),
         'role' => $data['role']
       );
@@ -40,6 +41,7 @@ class Muser extends CI_Model {
       $array = array(
           'username' => $data['username'],
           'email' => $data['email'],
+					'fullname' => $data['fullname'],
 					'role' => $data['role']
         );
 			if($data['password']!="")

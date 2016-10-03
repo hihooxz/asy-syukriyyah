@@ -33,15 +33,23 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="password" id="last-name" name="password" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="password" id="last-name" name="password"  class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
             <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="password2" type="password"  data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
+              <input id="password2" type="password"  data-validate-linked="password" class="form-control col-md-7 col-xs-12" >
             </div>
           </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Full Name
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" name="fullname" value="<?php echo $result['fullname']?>">
+            </div>
+          </div>
+
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Email
             </label>

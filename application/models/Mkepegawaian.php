@@ -109,16 +109,28 @@ class Mkepegawaian extends CI_Model {
 				return $query->result();
 			else return false;
 		}
+		function getKeluarga($id){
+
+			$this->db->join('pegawai','pegawai.id_pegawai = keluarga.id_pegawai');
+			//$this->db->where('id_keluarga',$id);
+			$query = $this->db->get('keluarga');
+			if($query->num_rows()>0){
+				return $query->row_array();
+			}
+			else return FALSE;
+		}
+
 
 		function select_data($id){
 			$this->db->select('gelar_depan,nama_lengkap,gelar_belakang,jenis_kelamin,alamat_tinggal,handphone,jabatan,unit_kerja,status_kepegawaian,fungsi,mulai_tugas,foto_pegawai,alamat_ktp,tempat_lahir,tanggal_lahir
 			,agama,alamat_ktp,rt_ktp,rw_ktp,kelurahan_ktp,kecamatan_ktp,kota_ktp,rt_tinggal,rw_tinggal,kota_tinggal,kecamatan_tinggal,kelurahan_tinggal,no_telepon,handphone
 			,pendidikan_terakhir,nama_pt,pendidikan_ditempuh,program_pd,jurusan_pd,tahun_masuk_pd,nama_pt_pd,unit_kerja_sebelumnya,status_sertifikasi,pengangkatan_calon_tetap,pengangkatan_tetap,sertifikasi_pendidik
-			');
+			,fullname');
 			$this->db->where('pegawai.id_pegawai',$id);
 		  $this->db->join('riwayat_kerja','pegawai.id_pegawai = riwayat_kerja.id_pegawai');
 			$this->db->join('pendidikan','pegawai.id_pegawai = pendidikan.id_pegawai ');
-			//$this->db->join('keluarga','keluarga.id_pegawai = keluarga.id_pegawai');
+			$this->db->join('user','user.id_user = pegawai.id_user');
+
 		$query = $this->db->get('pegawai');
 	if($query->num_rows()>0)
 		return $query->result();
@@ -134,6 +146,16 @@ class Mkepegawaian extends CI_Model {
 	if($query->num_rows()>0)
 		return $query->result();
 	else return false;
+
+		}
+
+		function select_keluarga($id){
+			$this->db->select('hub_keluarga,nama_anggota,data_keluarga.jenis_kelamin,kandung,pekerjaan');
+			$this->db->join('pegawai','data_keluarga.id_data_keluarga = pegawai.id_pegawai');
+			$query = $this->db->get('data_keluarga');
+			if($query->num_rows()>0)
+				return $query->result();
+			else return false;
 
 		}
 

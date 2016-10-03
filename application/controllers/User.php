@@ -45,6 +45,7 @@ class User extends CI_Controller {
 			$data['path_content'] = 'admin/user/add_user';
 			$this->form_validation->set_rules('username','Username','required');
 			$this->form_validation->set_rules('password','Password','required');
+			$this->form_validation->set_rules('fullname','Full Name','required');
 			$this->form_validation->set_rules('email','Email','required|valid_email');
 			$this->form_validation->set_rules('confirm','Confirm Password','required|matches[password]');
 			$this->form_validation->set_rules('role','Role','required');
@@ -67,6 +68,7 @@ class User extends CI_Controller {
 				redirect(base_url('user/manage_user'));
 
 				$this->form_validation->set_rules('username','Username','required');
+				$this->form_validation->set_rules('fullname','Full Name','required');
 				$this->form_validation->set_rules('email','Email','required|valid_email');
 				$this->form_validation->set_rules('confirm','Confirm Password','matches[password]');
 				$this->form_validation->set_rules('role','Role','required');

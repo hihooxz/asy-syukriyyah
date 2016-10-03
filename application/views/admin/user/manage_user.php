@@ -43,6 +43,7 @@
         <table class="table table-striped jambo_table bulk_action">
           <thead>
             <tr class="headings">
+              <th class="column-title">Full Name </th>
               <th class="column-title">Username </th>
               <th class="column-title">Email </th>
               <th class="column-title">Role </th>
@@ -60,13 +61,14 @@
             			foreach ($results as $rows) {
             				?>
             				<tr>
+                      <td><?php echo $rows->fullname ?></td>
                       <td><?php echo $rows->username ?></td>
                       <td><?php echo $rows->email ?></td>
                       <td><?php if($rows->role==1) echo "Kepegawaian"; elseif($rows->role==2) echo "IT"; elseif($rows->role==3) echo "Keuangan"; elseif($rows->role==4) echo "Yayasan";?></td>
                       <td><?php echo date('D, d M Y H:i',strtotime($rows->date_register)) ?></td>
 
                       <td>
-                        <a href ="<?php echo base_url('user/edit_user/'.$rows->id_user)?>"><i class="glyphicon glyphicon-edit"></i></a> 
+                        <a href ="<?php echo base_url('user/edit_user/'.$rows->id_user)?>"><i class="glyphicon glyphicon-edit"></i></a>
                       <!--<span class="glyphicon-class"><span class="glyphicon glyphicon-trash" aria-hidden="true"><a href ="<?php echo base_url('user/delete_user/'.$rows->id_user)?>" onclick="return confirm('Are You Sure want to delete?')"></a></span></span>-->
 
 

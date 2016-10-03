@@ -13,6 +13,7 @@ class Kepegawaian extends CI_Controller {
 		$this->load->model('mkeluarga','mkl');
 		$this->load->model('mpendidikan','mpd');
 		$this->load->model('mpekerjaan','mpj');
+		$this->load->model('muser','mu');
 			$this->load->library('fpdf');
 	}
 	public function index(){
@@ -1220,7 +1221,10 @@ class Kepegawaian extends CI_Controller {
 	        $a = array('a'=>$this->mky->select_data($id));
 					$b=  array('b'=>$this->mky->get_foto($id));
 					$c=	 array('c'=>$this->mky->pilih_data($id));
-					$res['data'] = array_merge($a, $b,$c);
+					$d= array('d' => $this->mky->select_keluarga($id));
+					$e= array('e' => $this->mky->getKeluarga($id));
+
+					$res['data'] = array_merge($a, $b,$c,$d,$e);
 	        $this->load->view('admin/pegawai/download',$res);
 		}
 }

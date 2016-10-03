@@ -150,6 +150,7 @@ class PDF extends FPDF
 			          					$pta = date('d M Y',strtotime($rows->pengangkatan_tetap));
 			          				}
 			          				else $pta = "-";
+
                         $this->Ln(20);
                         $this->setFont('Arial','',10);
                         $this->setFillColor(255,255,255);
@@ -309,8 +310,82 @@ class PDF extends FPDF
 											$this->cell(30,6,'Jabatan',1,0,'C',1);
 											$this->cell(60,6,'Alasan Berhenti/keluar',1,1,'C',1);
 											$this->setFillColor(255,255,255);
+											$this->ln(200);
+
+											$keluarga = $data['e'];
+											$this->setFont('Arial','',10);
+											$this->setFillColor(255,255,255);
+											$this->cell(36,10,'Status Pernikahan ',1,0,'L',0);
+											$this->cell(72,10,$keluarga['status_pernikahan'],1,1,'L',1);
+											$this->cell(36,10,'Nama Suami/istri ',1,0,'L',1);
+											$this->cell(72,10,$keluarga['nama_pasangan'],1,1,'L',1);
+											$this->cell(36,10,'Pekerjaan Suami/Istri',1,0,'L',1);
+											$this->cell(72,10,$keluarga['pekerjaan_pasangan'],1,1,'L',1);
+											$this->cell(36,10,'Jumlah Anak',1,0,'L',1);
+											$this->cell(46,10,'-Kandung',1,0,'L',1);
+											$this->cell(44,10,$keluarga['anak_kandung'],1,1,'L',1);
+											$this->cell(36);
+											$this->cell(80,10,'- Bukan kandung tetapi menjadi tanggungannya',1,0,'L',1);
+											$this->cell(10,10,$keluarga['bukan_anak_kandung'],1,1,'L',1);
+											$this->ln(8);
+											$this->setFont('Arial','',8);
+											$this->cell(30,6,"Data Keluarga",0,1,'L',1);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(230,230,200);
+											$this->cell(32,6,'Hubungan Keluarga',1,0,'C',1);
+											$this->cell(40,6,'Nama Anggota Keluarga',1,0,'C',1);
+											$this->cell(8,6,'L/P',1,0,'C',1);
+											$this->cell(30,6,'Tanggal Lahir',1,0,'C',1);
+											$this->cell(43,6,'Kandung/Bukan Kandung',1,0,'C',1);
+											$this->cell(40,6,'Pekerjaan',1,0,'C',1);
+											$this->ln(80);
+											$this->setFillColor(255,255,255);
+											$this->cell(46,10,'Nama Orang Tua Kandung',1,0,'L',1);
+											$this->cell(44,10,'Ayah',1,0,'L',1);
+											$this->cell(44,10,$keluarga['nama_ayah'],1,1,'L',1);
+											$this->cell(46);
+											$this->cell(44,10,'ibu',1,0,'L',1);
+											$this->cell(44,10,$keluarga['nama_ibu'],1,1,'L',1);
+											$this->cell(46,10,'Jumlah Saudara Kandung',1,0,'L',1);
+											$this->cell(72,10,$keluarga['jumlah_saudara_kandung'],1,1,'L',1);
+											$this->ln(8);
+											$this->setFont('Arial','',8);
+											$this->cell(30,6,"Data Saudara Kandung (cukup 3 orang bila saudara kandung lebih dari 3 orang)",0,1,'L',1);
+											$this->setFont('Arial','',10);
+											$this->setFillColor(230,230,200);
+											$this->cell(42,6,'Nama Saudara Kandung',1,0,'C',1);
+											$this->cell(8,6,'L/P',1,0,'C',1);
+											$this->cell(30,6,'Tanggal Lahir',1,0,'C',1);
+											$this->cell(40,6,'Pekerjaan',1,0,'C',1);
+											$this->cell(42,6,'Alamat (Tulis Kota Saja)',1,0,'C',1);
 
 
+											if($data['d']!=FALSE){
+											foreach ($data['d'] as $rows) {
+												$this->setFillColor(255,255,255);
+												$this->cell(40,6,$rows->tahun,1,0,'C',1);
+												$this->cell(60,6,$rows->lamanya,1,0,'C',1);
+												$this->cell(40,6,$rows->jenis,1,0,'C',1);
+												$this->cell(40,6,$rows->diutus,1,1,'C',1);
+
+											// width,height,data,border 1= border 0 = no border,enter 0 = no enter 1 = enter 2 = enter nyesuain, paragraph
+											}
+										}
+										else{
+
+										}
+
+										$this->ln(40);
+										$this->setFillColor(255,255,255);
+										// Move to the right
+										$this->Cell(130);
+										$tgl = tgl_indo(date('Y-m-d'));
+										$this->cell(30,6,"Tangerang, ".$tgl,0,1,'R',1);
+										$this->Cell(120);
+										$this->cell(30,6,"Pegawai",0,1,'R',1);
+										$this->ln(20);
+										$this->Cell(120);
+										$this->cell(30,6,$rows->fullname,0,1,'R',1);
 
 
 
