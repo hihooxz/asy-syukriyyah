@@ -6,7 +6,100 @@ class User extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('muser','mus');
+		$this->load->model('mkepegawaian','mky');
+		$this->load->model('mkeluarga','mkl');
+		$this->load->model('mpendidikan','mpd');
+		$this->load->model('mpekerjaan','mpj');
     $this->load->library('pagination');
+	}
+	public function index(){
+		$data['title_web']= 'adminpanel | Asy-syukriyyah';
+		$data['path_content'] = 'admin/module/dashboard';
+
+		$data['total_pegawai'] = $this->mod->countData('pegawai');
+		$data['pegawai_laki_laki'] = $this->mod->countWhereData('pegawai','jenis_kelamin',1);
+		$data['pegawai_perempuan'] = $this->mod->countWhereData('pegawai','jenis_kelamin',2);
+		$this->load->view('admin/index',$data);
+	}
+	
+	public function statistik(){
+		$data['title_web']= 'Statistik | Asy-syukriyyah';
+		$data['path_content'] = 'admin/module/statistik';
+
+		$data['total_pegawai'] = $this->mod->countData('pegawai');
+		$data['pegawai_laki_laki'] = $this->mod->countWhereData('pegawai','jenis_kelamin',1);
+		$data['pegawai_perempuan'] = $this->mod->countWhereData('pegawai','jenis_kelamin',2);
+		$data['pegawai_tetap'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',1);
+		$data['pegawai_honorer'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',2);
+		$data['pegawai_kontrak'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',3);
+		$data['cpt'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',4);
+		$data['dpk_gbs'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',5);
+		$data['guru_tetap'] = $this->mpj->countGuruTetap();
+
+		//perunit
+		$data['tkit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',6); // TK Islam
+		$data['yayasan'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',1)+
+		$this->mod->countWhereData('riwayat_kerja','unit_kerja',2) +
+		$this->mod->countWhereData('riwayat_kerja','unit_kerja',3) +
+		$this->mod->countWhereData('riwayat_kerja','unit_kerja',4) +
+		$this->mod->countWhereData('riwayat_kerja','unit_kerja',5); // Yayasan
+		$data['sdit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',7); // SDIT
+		$data['miplus'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',8); // MI Plus
+		$data['mts'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',9); // MTs
+		$data['smpit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',10); // SMPIT
+		$data['smait'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',11); // SMAIT
+
+		// pendidikan
+		$data['ts'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',0); // Tidak Sekolah
+		$data['sd'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',1);
+		$data['smp'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',2);
+		$data['sma'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',3);
+		$data['d1'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',4);
+		$data['d2'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',5);
+		$data['d3'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',6);
+		$data['d4'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',7);
+		$data['s1'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',8);
+		$data['s2'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',9);
+		$data['s3'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',10);
+		$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
+		$this->load->view('admin/index',$data);
+	}
+	function statistik_unit(){
+		$data['title_web']= 'Statistik Unit | Asy-syukriyyah';
+		$data['path_content'] = 'admin/module/statistik_unit';
+		$id = $this->uri->segment(3);
+		$data['results'] = $this->mpj->fetchAllPekerjaan($id);
+		if($id == "")
+			redirect(base_url($this->uri->segment(1).'/statistik'));
+
+		// kepegawaian
+		if($id != "yayasan")
+		$data['total_pegawai'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',$id);
+		else if($id == "yayasan")
+			$data['total_pegawai'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',1)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',2)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',3)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',4)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',5);
+
+		$data['pegawai_laki_laki'] = $this->mpj->countGenderUnit($id,1);
+		$data['pegawai_perempuan'] = $this->mpj->countGenderUnit($id,2);
+		$data['pegawai_tetap'] = $this->mpj->countStatusUnit($id,1);
+		$data['pegawai_honorer'] = $this->mpj->countStatusUnit($id,2);
+		$data['pegawai_kontrak'] = $this->mpj->countStatusUnit($id,3);
+		$data['cpt'] = $this->mpj->countStatusUnit($id,4);
+		$data['dpk_gbs'] = $this->mpj->countStatusUnit($id,5);
+
+		// pendidikan
+		$data['ts'] = $this->mpj->countPendidikanUnit($id,0);
+		$data['sd'] = $this->mpj->countPendidikanUnit($id,1);
+		$data['smp'] = $this->mpj->countPendidikanUnit($id,2);
+		$data['sma'] = $this->mpj->countPendidikanUnit($id,3);
+		$data['d1'] = $this->mpj->countPendidikanUnit($id,4);
+		$data['d2'] = $this->mpj->countPendidikanUnit($id,5);
+		$data['d3'] = $this->mpj->countPendidikanUnit($id,6);
+		$data['d4'] = $this->mpj->countPendidikanUnit($id,7);
+		$data['s1'] = $this->mpj->countPendidikanUnit($id,8);
+		$data['s2'] = $this->mpj->countPendidikanUnit($id,9);
+		$data['s3'] = $this->mpj->countPendidikanUnit($id,10);
+		$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
+		$this->load->view('admin/index',$data);
 	}
 
   function manage_user(){

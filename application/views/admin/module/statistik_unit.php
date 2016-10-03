@@ -111,6 +111,7 @@
           <div class="count"><?php echo $s3?></div>
         </div>
         <div class="clearfix"></div>
+        <?php if($this->session->userdata('role')!=2) { ?>
         <div class="table-responsive">
           <table class="table table-striped jambo_table bulk_action">
             <thead>
@@ -121,7 +122,7 @@
                 <th class="column-title">Unit Kerja</th>
                 <th class="column-title">Mulai Tugas</th>
                 <th class="column-title">Status</th>
-              
+
                 </th>
               </tr>
             </thead>
@@ -194,6 +195,7 @@
             </tbody>
           </table>
         </div>
+      <?php } ?>
      </div>
 
         <a href="<?php echo base_url($this->uri->segment(1).'/statistik')?>">

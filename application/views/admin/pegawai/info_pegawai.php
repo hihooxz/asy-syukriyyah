@@ -38,7 +38,9 @@
     </div>
     <div class="x_content">
       <div class="table-responsive">
+        <?php if($this->session->userdata('role')==1){ ?>
         <a href="<?php echo base_url($this->uri->segment(1).'/add-info-pegawai')?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button></a>
+        <?php } ?>
         <a href="<?php echo base_url($this->uri->segment(1).'/export')?>" class="btn btn-default blue-stripe ajax" ><img src="<?php echo base_url('asset/images/photos/file_exel.png')?>"  style= "width:30px;"> export</a>
         <?php
                 echo "<center>".$links."</center>";
@@ -54,8 +56,12 @@
               <th class="column-title">Handphone </th>
               <th class="column-title">Tanggal Input</th>
               <th class="column-title">Input BY</th>
+              <?php
+              if($this->session->userdata('role')==1){
+                ?>
               <th class="column-title no-link last"><span class="nobr">Action</span>
-              </th>
+                </th>
+              <?php } ?>
 
             </tr>
           </thead>
@@ -89,17 +95,17 @@
                       <td><?php echo $rows->handphone?></td>
                       <td><?php echo tgl_indo_timestamp(strtotime($rows->tanggal_input)) ?></td>
                       <td><?php echo $rows->username ?></td>
+                      <?php
+                      if($this->session->userdata('role')==1){
+                    ?>
                     <td>
-                    <a href ="<?php echo base_url($this->uri->segment(1).'/view-info-pegawai/'.$rows->id_pegawai)?>"><i class="glyphicon glyphicon-eye-open"></i></a> |
-                    <?php
-                    if($this->session->userdata('role')==1){
-                  ?>
                   <a href ="<?php echo base_url($this->uri->segment(1).'/edit-info-pegawai/'.$rows->id_pegawai)?>"><i class="glyphicon glyphicon-edit"></i></a> |
                   <a href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
-                  <?php
-                }
-                  ?>
                   </td>
+                  <?php
+                  }
+                  ?>
+
                     </tr>
             				<?php
             			}

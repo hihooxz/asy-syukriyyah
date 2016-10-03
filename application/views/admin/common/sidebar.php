@@ -12,8 +12,8 @@
           ?>
           <li><a><i class="fa fa-user"></i>User <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="<?php echo base_url('user/add-user') ?>">Add User</a></li>
-              <li><a href="<?php echo base_url('user/manage-user') ?>">Manage User</a></li>
+              <li><a href="<?php echo base_url($this->uri->segment(1).'/add-user') ?>">Add User</a></li>
+              <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-user') ?>">Manage User</a></li>
             </ul>
           </li>
           <?php
@@ -61,24 +61,62 @@
           <?php
         }   else if($this->session->userdata('role') == 3){
        ?>
-      <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li><a href="tables.html">Tables</a></li>
-          <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-        </ul>
-      </li>
-      <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li><a href="chartjs.html">Chart JS</a></li>
-          <li><a href="chartjs2.html">Chart JS2</a></li>
-          <li><a href="morisjs.html">Moris JS</a></li>
-          <li><a href="echarts.html">ECharts</a></li>
-          <li><a href="other_charts.html">Other Charts</a></li>
-        </ul>
-      </li>
+       <li><a><i class="fa fa-info"></i>Informasi Personal <span class="fa fa-chevron-down"></span></a>
+         <ul class="nav child_menu">
+
+           <li><a href="<?php echo base_url($this->uri->segment(1).'/info-pegawai') ?>">Data Informasi Personal</a></li>
+         </ul>
+       </li>
+       <li><a><i class="fa fa-heart"></i>Keluarga <span class="fa fa-chevron-down"></span></a>
+         <ul class="nav child_menu">
+
+           <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-keluarga') ?>">Data Keluarga</a></li>
+         </ul>
+       </li>
+       <li><a><i class="fa fa-graduation-cap"></i>Pendidikan <span class="fa fa-chevron-down"></span></a>
+         <ul class="nav child_menu">
+
+           <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-pendidikan') ?>">Data Pendidikan</a></li>
+         </ul>
+       </li>
+       <li><a><i class="fa fa-suitcase"></i>Pekerjaan & Jabatan <span class="fa fa-chevron-down"></span></a>
+         <ul class="nav child_menu">
+
+           <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-pekerjaan') ?>">Data Pekerjaan & Jabatan</a></li>
+         </ul>
+       </li>
       <?php
-    }
+    } else if($this->session->userdata('role') == 4){
       ?>
+
+   <li><a><i class="fa fa-info"></i>Informasi Personal <span class="fa fa-chevron-down"></span></a>
+     <ul class="nav child_menu">
+
+       <li><a href="<?php echo base_url($this->uri->segment(1).'/info-pegawai') ?>">Data Informasi Personal</a></li>
+     </ul>
+   </li>
+   <li><a><i class="fa fa-heart"></i>Keluarga <span class="fa fa-chevron-down"></span></a>
+     <ul class="nav child_menu">
+
+       <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-keluarga') ?>">Data Keluarga</a></li>
+     </ul>
+   </li>
+   <li><a><i class="fa fa-graduation-cap"></i>Pendidikan <span class="fa fa-chevron-down"></span></a>
+     <ul class="nav child_menu">
+
+       <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-pendidikan') ?>">Data Pendidikan</a></li>
+     </ul>
+   </li>
+   <li><a><i class="fa fa-suitcase"></i>Pekerjaan & Jabatan <span class="fa fa-chevron-down"></span></a>
+     <ul class="nav child_menu">
+
+       <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-pekerjaan') ?>">Data Pekerjaan & Jabatan</a></li>
+     </ul>
+   </li>
+  <?php
+}
+  ?>
+
     </ul>
   </div>
 

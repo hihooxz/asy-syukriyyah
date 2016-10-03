@@ -31,7 +31,9 @@
       </div>
     </div>
     <div class="x_content">
+      <?php if($this->session->userdata('role')==1){ ?>
       <a href="<?php echo base_url($this->uri->segment(1).'/add-pekerjaan')?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button></a>
+      <?php } ?>
       <a href="<?php echo base_url($this->uri->segment(1).'/export-pekerjaan')?>" class="btn btn-default blue-stripe ajax" ><img src="<?php echo base_url('asset/images/photos/file_exel.png')?>"  style= "width:30px;"> export</a>
       <?php
           echo "<center>".$links."</center>";
@@ -46,8 +48,12 @@
               <th class="column-title">Unit Kerja</th>
               <th class="column-title">Mulai Tugas</th>
               <th class="column-title">Status</th>
+              <?php
+              if($this->session->userdata('role')==1){
+                ?>
               <th class="column-title no-link last"><span class="nobr">Action</span>
               </th>
+              <?php } ?>
             </tr>
           </thead>
 
@@ -111,7 +117,9 @@
                           echo "Non Aktif";
                         ?></td>
 
-
+                        <?php
+                        if($this->session->userdata('role')==1){
+                      ?>
                       <td>
                         <a title="Edit Pekerjaan" href ="<?php echo base_url($this->uri->segment(1).'/edit-pekerjaan/'.$rows->id_riwayat_kerja)?>"><i class="glyphicon glyphicon-edit"></i></a> |
                         <a title="Edit Detail Pekerjaan" href ="<?php echo base_url($this->uri->segment(1).'/edit-detail-pekerjaan/'.$rows->id_riwayat_kerja)?>"><i class="fa fa-users"></i></a>
@@ -119,7 +127,7 @@
                       <span class="glyphicon-class"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a></span></span>
                     -->
                       </td>
-
+                      <?php } ?>
                     </tr>
             				<?php
             			}
