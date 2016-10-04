@@ -577,6 +577,29 @@ class Kepegawaian extends CI_Controller {
 				redirect(base_url($this->uri->segment(1).'/manage-pendidikan/'));
 			}
 		}
+
+		function edit_detail_pendidikan(){
+				$data['title_web'] = 'UBah Data Pendidikan | Adminpanel Asy-syukriyyah';
+				$data['path_content'] = 'admin/pendidikan/edit_detail_pendidikan';
+				$id = $this->uri->segment(3);
+				$data['result'] = $this->mpd->getPendidikan($id);
+
+				if($data['result'] == false)
+					redirect(base_url($this->uri->segment(1).'/manage-pendidikan'));
+
+				$this->form_validation->set_rules('tingkat','Tingkat');
+				$this->form_validation->set_rules('tahun_masuk','Tahun Masuk');
+				$this->form_validation->set_rules('tahun_selesai','Tahun Selesai');
+				$this->form_validation->set_rules('nama_instansi','Nama Instansi');
+				$this->form_validation->set_rules('jurusan','Jurusan');
+				if(!$this->form_validation->run()){
+					$this->load->view('admin/index',$data);
+				}
+				else{
+					$data['save'] = $this->mpd->editDetailPendidikan($_POST,$id);
+					redirect(base_url($this->uri->segment(1).'/manage-pendidikan/'));
+				}
+			}
 	function delete_pendidikan(){
 		$id = $this->uri->segment(3);
 		$this->db->where('id_pendidikan',$id);

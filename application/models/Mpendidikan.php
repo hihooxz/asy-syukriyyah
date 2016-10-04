@@ -36,7 +36,7 @@ class Mpendidikan extends CI_Model {
 		if($query->num_rows()>0){
 			return $query->result();
 		}
-		else return FALSE;		
+		else return FALSE;
 	}
 	function savePendidikan($data){
 		$array = array(
@@ -76,10 +76,31 @@ class Mpendidikan extends CI_Model {
 		$this->db->update('pendidikan',$array);
 		return 1;
 	}
+	function editDetailPendidikan($data,$id){
+		$array = array(
+				'tingkat' => $data['tingkat'],
+				'tahun_masuk' => $data['tahun_masuk'],
+				'tahun_selesai' => $data['tahun_selesai'],
+				'nama_instansi' => $data['nama_instansi'],
+				'jurusan_pd' => $data['jurusan_pd']
+			);
+		$this->db->where('id_pendidikan_normal',$id);
+		$this->db->update('pendidikan_formal',$array);
+		return 1;
+	}
 	function getPendidikan($id){
 		$this->db->where('id_pendidikan',$id);
 		$this->db->join('pegawai','pegawai.id_pegawai = pendidikan.id_pegawai');
 	    $query = $this->db->get('pendidikan');
+	    if($query->num_rows()>0){
+	      return $query->row_array();
+	    }
+	    else return FALSE;
+	}
+	function getDetailPendidikan($id){
+		//$this->db->where('id_pendidikan',$id);
+		$this->db->join('pendidikan','pendidikan_formal.id_pendidikan_normal = pendidikan.id_pendidikan');
+	    $query = $this->db->get('pendidikan_formal');
 	    if($query->num_rows()>0){
 	      return $query->row_array();
 	    }
