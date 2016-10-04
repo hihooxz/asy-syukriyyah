@@ -45,203 +45,200 @@
                     <div class="row">
                       <div class="col-md-1">
                         <h4>SD</h4>
-                        <input type="hidden" name="id_formal_0" value="<?php if(isset($id_formal_0)) echo $id_formal_0?>">
+                        <input type="hidden" name="id_formal[1]" value="<?php if(isset($id_formal[1])) echo $id_formal[1] ?>">
                       </div>
                       <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_0" class="form-control" value="<?php if(isset($tahun_masuk_0)) echo $tahun_masuk_0?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[1]" class="form-control" value="<?php if(isset($tahun_masuk[1])) echo $tahun_masuk[1]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_0" class="form-control" value="<?php if(isset($tahun_selesai_0)) echo $tahun_selesai_0?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[1]" class="form-control" value="<?php if(isset($tahun_selesai[1])) echo $tahun_selesai[1]?>">
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_0" class="form-control" value="<?php if(isset($nama_instansi_0)) echo $nama_instansi_0?>">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[1]" class="form-control" value="<?php if(isset($nama_instansi[1])) echo $nama_instansi[1]?>">
                       </div>
                       <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_0" class="form-control" value="<?php if(isset($jurusan_0)) echo $jurusan_0?>">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[1]" class="form-control" value="<?php if(isset($jurusan[1])) echo $jurusan[1]?>">
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>SMP</h4>
-                        <input type="hidden" name="id_formal_1" value="<?php if(isset($id_formal_1)) echo $id_formal_1?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[2]" value="<?php if(isset($id_formal[2])) echo $id_formal[2] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_1" class="form-control" value="<?php if(isset($tahun_masuk_1)) echo $tahun_masuk_1?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[2]" class="form-control" value="<?php if(isset($tahun_masuk[2])) echo $tahun_masuk[2]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_1" class="form-control" value="<?php if(isset($tahun_selesai_1)) echo $tahun_selesai_1?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[2]" class="form-control" value="<?php if(isset($tahun_selesai[2])) echo $tahun_selesai[2]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_1" class="form-control" value="<?php if(isset($nama_instansi_1)) echo $nama_instansi_1?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_1" class="form-control" value="<?php if(isset($jurusan_1)) echo $jurusan_1?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[2]" class="form-control"value="<?php if(isset($nama_instansi[2])) echo $nama_instansi[2]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[2]" class="form-control"value="<?php if(isset($jurusan[2])) echo $jurusan[2]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>SMA</h4>
-                        <input type="hidden" name="id_formal_2" value="<?php if(isset($id_formal_2)) echo $id_formal_2?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[3]" value="<?php if(isset($id_formal[3])) echo $id_formal[3] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_2" class="form-control" value="<?php if(isset($tahun_masuk_2)) echo $tahun_masuk_2?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[3]" class="form-control" value="<?php if(isset($tahun_masuk[3])) echo $tahun_masuk[3]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_2" class="form-control" value="<?php if(isset($tahun_selesai_2)) echo $tahun_selesai_2?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[3]" class="form-control" value="<?php if(isset($tahun_selesai[3])) echo $tahun_selesai[3]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_2" class="form-control" value="<?php if(isset($nama_instansi_2)) echo $nama_instansi_2?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_2" class="form-control" value="<?php if(isset($jurusan_2)) echo $jurusan_2?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[3]" class="form-control" value="<?php if(isset($nama_instansi[3])) echo $nama_instansi[3]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[3]" class="form-control" value="<?php if(isset($jurusan[3])) echo $jurusan[3]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>D1</h4>
-                        <input type="hidden" name="id_formal_3" value="<?php if(isset($id_formal_3)) echo $id_formal_3?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[4]" value="<?php if(isset($id_formal[4])) echo $id_formal[4] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_3" class="form-control" value="<?php if(isset($tahun_masuk_3)) echo $tahun_masuk_3?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[4]" class="form-control"value="<?php if(isset($tahun_masuk[4])) echo $tahun_masuk[4]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_3" class="form-control" value="<?php if(isset($tahun_selesai_3)) echo $tahun_selesai_3?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[4]" class="form-control"value="<?php if(isset($tahun_selesai[4])) echo $tahun_selesai[4]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_3" class="form-control" value="<?php if(isset($nama_instansi_3)) echo $nama_instansi_3?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_3" class="form-control" value="<?php if(isset($jurusan_3)) echo $jurusan_3?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[4]" class="form-control"value="<?php if(isset($nama_instansi[4])) echo $nama_instansi[4]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[4]" class="form-control" value="<?php if(isset($jurusan[4])) echo $jurusan[4]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>D2</h4>
-                        <input type="hidden" name="id_formal_4" value="<?php if(isset($id_formal_4)) echo $id_formal_4?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[5]" value="<?php if(isset($id_formal[5])) echo $id_formal[5] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_4" class="form-control" value="<?php if(isset($tahun_masuk_4)) echo $tahun_masuk_4?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[5]" class="form-control"value="<?php if(isset($tahun_masuk[5])) echo $tahun_masuk[5]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_4" class="form-control" value="<?php if(isset($tahun_selesai_4)) echo $tahun_selesai_4?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[5]" class="form-control"value="<?php if(isset($tahun_selesai[5])) echo $tahun_selesai[5]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_4" class="form-control" value="<?php if(isset($nama_instansi_4)) echo $nama_instansi_4?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_4" class="form-control" value="<?php if(isset($jurusan_4)) echo $jurusan_4?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[5]" class="form-control"value="<?php if(isset($nama_instansi[5])) echo $nama_instansi[5]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[5]" class="form-control"value="<?php if(isset($jurusan[5])) echo $jurusan[5]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>D3</h4>
-                        <input type="hidden" name="id_formal_5" value="<?php if(isset($id_formal_5)) echo $id_formal_5?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[6]" value="<?php if(isset($id_formal[6])) echo $id_formal[6] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_5" class="form-control" value="<?php if(isset($tahun_masuk_5)) echo $tahun_masuk_5?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[6]" class="form-control" value="<?php if(isset($tahun_masuk[6])) echo $tahun_masuk[6]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_5" class="form-control" value="<?php if(isset($tahun_selesai_5)) echo $tahun_selesai_5?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[6]" class="form-control" value="<?php if(isset($tahun_selesai[6])) echo $tahun_selesai[6]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_5" class="form-control" value="<?php if(isset($nama_instansi_5)) echo $nama_instansi_5?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_5" class="form-control" value="<?php if(isset($jurusan_5)) echo $jurusan_5?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[6]" class="form-control" value="<?php if(isset($nama_instansi[6])) echo $nama_instansi[6]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[6]" class="form-control" value="<?php if(isset($jurusan[6])) echo $jurusan[6]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>S1</h4>
-                        <input type="hidden" name="id_formal[]" value="<?php if(isset($id_formal[6])) echo $id_formal[6] ?>">
+                        <input type="hidden" name="id_formal[7]" value="<?php if(isset($id_formal[7])) echo $id_formal[7] ?>">
                       </div>
                       <div class="col-md-5">
-                        <input type="hidden" name="id_formal_6" value="<?php if(isset($id_formal_6)) echo $id_formal_6?>">
-                        </div>
-                        <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_6" class="form-control" value="<?php if(isset($tahun_masuk_6)) echo $tahun_masuk_6?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[7]" class="form-control" value="<?php if(isset($tahun_masuk[7])) echo $tahun_masuk[7]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_6" class="form-control" value="<?php if(isset($tahun_selesai_6)) echo $tahun_selesai_6?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[7]" class="form-control" value="<?php if(isset($tahun_selesai[7])) echo $tahun_selesai[7]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_6" class="form-control" value="<?php if(isset($nama_instansi_6)) echo $nama_instansi_6?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_6" class="form-control" value="<?php if(isset($jurusan_6)) echo $jurusan_6?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[7]" class="form-control" value="<?php if(isset($nama_instansi[7])) echo $nama_instansi[7]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[7]" class="form-control" value="<?php if(isset($jurusan[7])) echo $jurusan[7]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>S2</h4>
-                        <input type="hidden" name="id_formal_7" value="<?php if(isset($id_formal_7)) echo $id_formal_7?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[8]" value="<?php if(isset($id_formal[8])) echo $id_formal[8] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_7" class="form-control" value="<?php if(isset($tahun_masuk_7)) echo $tahun_masuk_7?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[8]" class="form-control" value="<?php if(isset($tahun_masuk[8])) echo $tahun_masuk[8]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_7" class="form-control" value="<?php if(isset($tahun_selesai_7)) echo $tahun_selesai_7?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[8]" class="form-control" value="<?php if(isset($tahun_selesai[8])) echo $tahun_selesai[8]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_7" class="form-control" value="<?php if(isset($nama_instansi_7)) echo $nama_instansi_7?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_7" class="form-control" value="<?php if(isset($jurusan_7)) echo $jurusan_7?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[8]" class="form-control" value="<?php if(isset($nama_instansi[8])) echo $nama_instansi[8]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[8]" class="form-control" value="<?php if(isset($jurusan[8])) echo $jurusan[8]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-1">
                         <h4>S3</h4>
-                        <input type="hidden" name="id_formal_8" value="<?php if(isset($id_formal_8)) echo $id_formal_8?>">
-                        </div>
-                        <div class="col-md-5">
+                        <input type="hidden" name="id_formal[9]" value="<?php if(isset($id_formal[9])) echo $id_formal[9] ?>">
+                      </div>
+                      <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_8" class="form-control" value="<?php if(isset($tahun_masuk_8)) echo $tahun_masuk_8?>">
+                            <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk[9]" class="form-control" value="<?php if(isset($tahun_masuk[9])) echo $tahun_masuk[9]?>">
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai_8" class="form-control" value="<?php if(isset($tahun_selesai_8)) echo $tahun_selesai_8?>">
+                          <input type="text" name="text" placeholder="Tahun Keluar" name="tahun_selesai[9]" class="form-control" value="<?php if(isset($tahun_selesai[9])) echo $tahun_selesai[9]?>">
                         </div>
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi_8" class="form-control" value="<?php if(isset($nama_instansi_8)) echo $nama_instansi_8?>">
-                        </div>
-                        <div class="col-md-3">
-                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan_8" class="form-control" value="<?php if(isset($jurusan_8)) echo $jurusan_8?>">
-                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Nama Sekolah / PT" name="nama_instansi[9]" class="form-control" value="<?php if(isset($nama_instansi[9])) echo $nama_instansi[9]?>">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" name="text" placeholder="Program / Jurusan" name="jurusan[9]" class="form-control" value="<?php if(isset($jurusan[9])) echo $jurusan[9]?>">
+                      </div>
                     </div>
                     <div class="row">
                       <span><h5>Pendidkan Non Formal Diutus Oleh Asy-Syukriyah</h5></span>

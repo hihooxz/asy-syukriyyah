@@ -22,6 +22,18 @@ class Mpendidikan extends CI_Model {
     }
     else return FALSE;
   }
+
+	function fetchPendidikanFormal($id) {
+    $this->db->where('pendidikan_formal.id_pendidikan',$id);
+  	$this->db->join('pendidikan','pendidikan_formal.id_pendidikan_normal = pendidikan.id_pendidikan');
+		$this->db->order_by('tingkat','ASC');
+    $query = $this->db->get('pendidikan_formal');
+    if($query->num_rows()>0){
+      return $query->result();
+    }
+    else return FALSE;
+  }
+
   function countAllPendidkan() {
     return $this->db->count_all("pendidikan");
   }
@@ -77,15 +89,39 @@ class Mpendidikan extends CI_Model {
 		return 1;
 	}
 	function editDetailPendidikan($data,$id){
-		$array = array(
-				'tingkat' => $data['tingkat'],
-				'tahun_masuk' => $data['tahun_masuk'],
-				'tahun_selesai' => $data['tahun_selesai'],
-				'nama_instansi' => $data['nama_instansi'],
-				'jurusan_pd' => $data['jurusan_pd']
-			);
-		$this->db->where('id_pendidikan_normal',$id);
-		$this->db->update('pendidikan_formal',$array);
+		$formal = $this->mpd->fetchPendidikanFormal($id);
+		if($formal == FALSE){
+			$i = 1;
+			foreach ($formal as $rows ){
+				$array = array(
+						'tingkat' => $data['tingkat'][$i],
+						'tahun_masuk' => $data['tahun_masuk'][$i],
+						'tahun_selesai' => $data['tahun_selesai'][$i],
+						'nama_instansi' => $data['nama_instansi'][$i],
+						'jurusan_pd' => $data['jurusan_pd'][$i],
+						'id_pendidikan' => $id
+					);
+				$this->db->insert('pendidikan_formal',$array);
+				$i++;
+			}
+		}
+		else{
+			$i = 1;
+			foreach ($formal as $rows ){
+				$array = array(
+						'tingkat' => $data['tingkat'][$i],
+						'tahun_masuk' => $data['tahun_masuk'][$i],
+						'tahun_selesai' => $data['tahun_selesai'][$i],
+						'nama_instansi' => $data['nama_instansi'][$i],
+						'jurusan_pd' => $data['jurusan_pd'][$i],
+						'id_pendidikan' => $id
+					);
+					$this->db->where('id_pendidikan_normal',$id);
+					$this->db->update('pendidikan_formal',$array);
+				$i++;
+			}
+		}
+
 		return 1;
 	}
 	function getPendidikan($id){

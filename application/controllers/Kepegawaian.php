@@ -587,17 +587,43 @@ class Kepegawaian extends CI_Controller {
 				if($data['result'] == false)
 					redirect(base_url($this->uri->segment(1).'/manage-pendidikan'));
 
-				$this->form_validation->set_rules('tingkat','Tingkat');
-				$this->form_validation->set_rules('tahun_masuk','Tahun Masuk');
-				$this->form_validation->set_rules('tahun_selesai','Tahun Selesai');
-				$this->form_validation->set_rules('nama_instansi','Nama Instansi');
-				$this->form_validation->set_rules('jurusan','Jurusan');
+				$formal = $this->mpd->fetchPendidikanFormal($id);
+				if($formal!=FALSE){
+					foreach ($formal as $rows) {
+							$data['tahun_masuk'][$rows->tingkat] = $rows->tahun_masuk;
+							$data['tahun_selesai'][$rows->tingkat] = $rows->tahun_selesai;
+							$data['nama_instansi'][$rows->tingkat] = $rows->nama_instansi;
+							$data['jurusan'][$rows->tingkat] = $rows->jurusan;
+							$data['id_formal'][$rows->tingkat] = $rows->id_pendidikan_normal;
+					}
+				}
+
+
+				$this->form_validation->set_rules('id_pendidikan_normal','Tahun Masuk SD','required');
 				if(!$this->form_validation->run()){
 					$this->load->view('admin/index',$data);
 				}
 				else{
-					$data['save'] = $this->mpd->editDetailPendidikan($_POST,$id);
-					redirect(base_url($this->uri->segment(1).'/manage-pendidikan/'));
+					// $data['save'] = $this->mpd->editDetailPendidikan($_POST,$id);
+					// redirect(base_url($this->uri->segment(1).'/manage-pendidikan/'));
+					// $tahun = $this->input->post('tahun_masuk');
+					// echo $tahun[0];
+					// $post = array();
+					// foreach ( $this->input->post() as $key => $value )
+					// {
+					//     $post[$key] = $this->input->post($key);
+					// }
+					// var_dump($post);
+					$tahun = $this->input->post('tahun_masuk');
+					echo $this->input->post('tahun_masuk[0]');
+				  // if (is_array($tahun)) {
+				  //   foreach ($tahun as $rows => $k) {
+				  //     echo "Owner Name is : " . $k . "<br/>";
+				  //   }
+				  // } else {
+				  //   echo "Owner is not array";
+				  // }
+					//var_dump($this->input->post());
 				}
 			}
 	function delete_pendidikan(){
