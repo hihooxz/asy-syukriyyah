@@ -24,7 +24,7 @@ class PDF extends FPDF
 
 	function Content($data)
 	{
-									$image1 = "asset/asset_index/images/logo_atas.png";
+									$image1 = "asset/asset_index/images/logo_atas1.png";
 									if($data['b']['foto_pegawai']!="")
 										$image2 = $data['b']['foto_pegawai'];
 									else {
@@ -211,8 +211,6 @@ class PDF extends FPDF
 												$this->cell(36,10,'Handphone',1,0,'L',1);
 												$this->cell(36,10,$rows->handphone,1,1,'L',1);
 												$this->ln(100);
-												$this->cell(36,10,'Nama Lengkap ',1,0,'L',0);
-												$this->cell(36,10,$rows->nama_lengkap,1,1,'L',1);
 												$this->cell(36,10,'Pendidikan Terakhir ',1,0,'L',0);
 												$this->cell(36,10,$pk,1,1,'L',1);
 												$this->Ln(5);
@@ -375,17 +373,24 @@ class PDF extends FPDF
 
 										}
 
-										$this->ln(40);
+										$this->ln(30);
 										$this->setFillColor(255,255,255);
+
 										// Move to the right
 										$this->Cell(130);
 										$tgl = tgl_indo(date('Y-m-d'));
 										$this->cell(30,6,"Tangerang, ".$tgl,0,1,'R',1);
 										$this->Cell(120);
-										$this->cell(30,6,"Pegawai",0,1,'R',1);
+										$this->cell(30,6,"Operator",0,1,'R',1);
 										$this->ln(20);
 										$this->Cell(120);
 										$this->cell(30,6,$rows->fullname,0,1,'R',1);
+										$this->ln(-38);
+										$this->cell(30,6,"Mengetahui",0,1,'L',1);
+										$this->cell(30,6,"Kepala Departemen Support",0,1,'L',1);
+										$this->ln(25);
+										$this->cell(30,6,$rows->fullname,0,0,'L',1);
+
 
 
 

@@ -122,8 +122,14 @@
                 <th class="column-title">Unit Kerja</th>
                 <th class="column-title">Mulai Tugas</th>
                 <th class="column-title">Status</th>
+                <?php
+                if($this->session->userdata('role')==1){
+                  ?>
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                  </th>
+                <?php } ?>
 
-                </th>
+
               </tr>
             </thead>
 
@@ -178,11 +184,20 @@
                         ?></td>
                         <td><?php echo $rows->mulai_tugas ?></td>
                         <td><?php
-                          if($rows->status_aktif == 1)
+                          if($rows->status_aktif == 0)
                             echo "Aktif";
-                          else if($rows->status_aktif == 2)
+                          else if($rows->status_aktif == 1)
                             echo "Non Aktif";
                           ?></td>
+                          <?php
+                          if($this->session->userdata('role')==1){
+                        ?>
+                        <td>
+                      <a href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
+                      </td>
+                      <?php
+                      }
+                      ?>
                       </tr>
                       <?php
                     }
