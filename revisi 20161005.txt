@@ -1,0 +1,17 @@
+Waktu di print pdf ada tambahan ttd mengetahui
+
+Kepala Departemen Support
+
+
+   Ahmad Zarkasih, ST.
+
+ada tombol kembali diatas jangan dibawah (statistik unit)
+bisa diklik pegawai / download pdf (statistik unit)
+printout pdf diperbaiki jangan pakai kotak2
+
+Title di printout pdf nya:
+dihapus pendukung nya langsung support
+
+printout pdf
+Nama lengkap di halaman ke-2 dihapus
+jangan lupa titik 2 nya
