@@ -579,7 +579,7 @@ class Kepegawaian extends CI_Controller {
 		}
 
 		function edit_detail_pendidikan(){
-				$data['title_web'] = 'UBah Data Pendidikan | Adminpanel Asy-syukriyyah';
+				$data['title_web'] = 'Ubah Detail Data Pendidikan | Adminpanel Asy-syukriyyah';
 				$data['path_content'] = 'admin/pendidikan/edit_detail_pendidikan';
 				$id = $this->uri->segment(3);
 				$data['result'] = $this->mpd->getPendidikan($id);
@@ -708,6 +708,36 @@ class Kepegawaian extends CI_Controller {
 				redirect(base_url($this->uri->segment(1).'/manage-pekerjaan/'));
 			}
   	}
+
+		function edit_detail_pekerjaan(){
+
+			$data['title_web'] = 'Ubah Data Pekerjaan Pegawai | Adminpanel Asy-syukriyyah';
+			$data['path_content'] = 'admin/pekerjaan/edit_detail_pekerjaan';
+
+			$id = $this->uri->segment(3);
+			$data['result'] = $this->mpj->getPekerjaan($id);
+			// if($data['result'] == false)
+			// 	redirect(base_url($this->uri->segment(3).'/manage-pekerjaan'));
+			//
+			// $this->form_validation->set_rules('pegawai','Nama Pegawai','required');
+			// $this->form_validation->set_rules('jabatan','Jabatan','required');
+			// $this->form_validation->set_rules('unit_kerja','Unit Kerja','required');
+			// $this->form_validation->set_rules('unit_kerja_sebelumnya','Unit Kerja Sebelumnya','');
+			// $this->form_validation->set_rules('status_aktif','Status','required');
+			// $this->form_validation->set_rules('mulai_tugas','Mulai Tugas','');
+			// $this->form_validation->set_rules('status_kepegawaian','Status Kepegawaian','required');
+			// $this->form_validation->set_rules('calon_tetap','Pengangkatan Sebagai Calon Pegawai Tetap','');
+			// $this->form_validation->set_rules('tetap','Pengangkatan Sebagai Pegawai Tetap','');
+			// if(!$this->form_validation->run()){
+				$this->load->view('admin/index',$data);
+			// }
+			// else{
+			// 	$data['save'] = $this->mpj->editPekerjaan($_POST,$id);
+			// 	redirect(base_url($this->uri->segment(1).'/manage-pekerjaan/'));
+			// }
+
+		}
+
   	function delete_pekerjaan(){
 			$id = $this->uri->segment(3);
 			$this->db->where('id_riwayat_kerja',$id);

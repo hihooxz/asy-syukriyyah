@@ -122,24 +122,24 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text"  name="nama_pegawai[1]" class="form-control">
-                      <input type="hidden"  name="hub_keluarga[1]" class="form-control" value="0">
+                      <input type="text"  name="nama_pegawai_1" class="form-control">
+                      <input type="hidden"  name="hub_keluarga_1" class="form-control" value="0">
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <select class="form-control" name="jenis_kelamin[1]">
+                    <select class="form-control" name="jenis_kelamin_1">
                         <option value="1">L</option>
                         <option value="2">P</option>
                     </select>
                 </div>
                 <div class="col-md-2">
-                  <select class="form-control" name="kandung[1]">
+                  <select class="form-control" name="kandung_1">
                         <option value="0">Kandung</option>
                         <option value="1">Bukan Kandung</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <input type="text"  name="pekerjaan[1]" class="form-control">
+                    <input type="text"  name="pekerjaan_1" class="form-control">
                 </div>
               </div>
               <div class="row">
@@ -148,24 +148,24 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text"  name="nama_pegawai[2]" class="form-control">
-                      <input type="hidden"  name="hub_keluarga[2]" class="form-control" value="1">
+                      <input type="text"  name="nama_pegawai_2" class="form-control">
+                      <input type="hidden"  name="hub_keluarga_2" class="form-control" value="1">
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <select class="form-control" name="jenis_kelamin[2]">
+                    <select class="form-control" name="jenis_kelamin_2">
                         <option value="1">L</option>
                         <option value="2">P</option>
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select class="form-control" name="kandung[2]">
+                    <select class="form-control" name="kandung_2">
                         <option value="0">Kandung</option>
                         <option value="1">Bukan Kandung</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <input type="text"  name="pekerjaan[2]" class="form-control">
+                    <input type="text"  name="pekerjaan_2" class="form-control">
                 </div>
               </div>
               <?php
@@ -178,23 +178,23 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="text" name="text"  name="nama_anak[<?php echo $i?>]" class="form-control">
+                    <input type="text" name="text"  name="nama_anak_<?php echo $i?>" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-1">
-                    <select class="form-control" name="jenis_kelamin_anak[<?php echo $i;?>]">
+                    <select class="form-control" name="jenis_kelamin_anak_<?php echo $i;?>">
                         <option value="1">L</option>
                         <option value="2">P</option>
                     </select>
                 </div>
                 <div class="col-md-2">
-                  <select class="form-control" name="status_anak[<?php echo $i;?>]">
+                  <select class="form-control" name="status_anak_<?php echo $i;?>">
                         <option value="0">Kandung</option>
                         <option value="1">Bukan Kandung</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                  <input type="text" name="text"  name="pekerjaan[<?php echo $i?>]" class="form-control">
+                  <input type="text" name="text"  name="pekerjaan_<?php echo $i?>" class="form-control">
                 </div>
               </div>
               <?php
@@ -225,23 +225,23 @@
               <div class="row">
                   <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" name="text"  name="nama_sk[<?php echo $i; ?>]" class="form-control">
+                      <input type="text" name="text"  name="nama_sk_<?php echo $i; ?>" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-3">
-                    <input type="text" name="text"  name="ttl_sk[<?php echo $i; ?>]" class="form-control">
+                    <input type="text" name="text"  name="ttl_sk_<?php echo $i; ?>" class="form-control">
                   </div>
                 <div class="col-md-1">
-                  <select class="form-control" name="jenis_kelamin_sk[<?php echo $i; ?>]">
+                  <select class="form-control" name="jenis_kelamin_sk_<?php echo $i; ?>">
                         <option value="1">L</option>
                         <option value="2">P</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                  <input type="text" name="text"  name="pekerjaan[<?php echo $i; ?>]" class="form-control">
+                  <input type="text" name="text"  name="pekerjaan_<?php echo $i; ?>" class="form-control">
                 </div>
                 <div class="col-md-3">
-                  <input type="text" name="text"  name="alamat[<?php echo $i; ?>]" class="form-control">
+                  <input type="text" name="text"  name="alamat_<?php echo $i;?>" class="form-control">
                 </div>
               </div>
               <?php

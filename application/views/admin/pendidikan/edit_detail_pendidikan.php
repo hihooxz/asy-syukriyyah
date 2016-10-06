@@ -177,12 +177,9 @@
                     <div class="row">
                       <div class="col-md-1">
                         <h4>S1</h4>
-                        <input type="hidden" name="id_formal[]" value="<?php if(isset($id_formal[6])) echo $id_formal[6] ?>">
+                        <input type="hidden" name="id_formal_6" value="<?php if(isset($id_formal[6])) echo $id_formal[6] ?>">
                       </div>
                       <div class="col-md-5">
-                        <input type="hidden" name="id_formal_6" value="<?php if(isset($id_formal_6)) echo $id_formal_6?>">
-                        </div>
-                        <div class="col-md-5">
                         <div class="col-md-6">
                           <div class="form-group">
                             <input type="text" name="text" placeholder="Tahun Masuk" name="tahun_masuk_6" class="form-control" value="<?php if(isset($tahun_masuk_6)) echo $tahun_masuk_6?>">
