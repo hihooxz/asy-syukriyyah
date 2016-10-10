@@ -1302,8 +1302,8 @@ class Kepegawaian extends CI_Controller {
 					$c=	 array('c'=>$this->mky->pilih_data($id));
 					$d= array('d' => $this->mky->select_keluarga($id));
 					$e= array('e' => $this->mky->getKeluarga($id));
-
-					$res['data'] = array_merge($a, $b,$c,$d,$e);
+					$f = array('f' => $this->mod->getDataWhere('user','id_user',$this->session->userdata('idAdmin')));
+					$res['data'] = array_merge($a, $b,$c,$d,$e,$f);
 	        $this->load->view('admin/pegawai/download',$res);
 		}
 }
