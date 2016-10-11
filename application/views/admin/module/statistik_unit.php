@@ -193,7 +193,7 @@
                           if($this->session->userdata('role')==1){
                         ?>
                         <td>
-                      <a href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
+                      <a target="_blank" href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
                       </td>
                       <?php
                       }

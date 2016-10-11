@@ -44,6 +44,7 @@ class PDF extends FPDF
 									$this->cell(30,6,"DEPARTEMEN PENDUKUNG (SUPPORT)",0,1,'C',1);
 	    						$this->Cell(80);
 									$this->cell(30,6,"DIVISI ADMINISTRASI & SDM",0,1,'C',1);
+								$this->Line(10,40,200,40);
             $ya = 46;
             $rw = 6;
 
@@ -184,10 +185,10 @@ class PDF extends FPDF
                         $this->cell($space_left,10,'Alamat Sesuai KTP',0,0,'L',1);
                         $this->cell(10);
                         $this->cell(2,10,':',0,0,'L',0);
-                        $this->cell(146,10,substr($rows->alamat_ktp,0,80),0,1,'L',1);
-                        if(strlen($rows->alamat_ktp)>80){
-                        $this->cell(48);
-                        $this->cell(146,10,substr($rows->alamat_ktp,80,150),0,1,'L',1);
+                        $this->cell(146,10,substr($rows->alamat_ktp,0,70),0,1,'L',1);
+                        if(strlen($rows->alamat_ktp)>70){
+                        $this->cell($space_left+12);
+                        $this->cell(146,10,substr($rows->alamat_ktp,70,130),0,1,'L',1);
                     	}
                         $this->cell(62);
                         $this->cell(5,10,'RT',0,0,'L',1);
@@ -216,10 +217,10 @@ class PDF extends FPDF
                         $this->cell($space_left+8,10,'Alamat Sesuai Tempat Tinggal',0,0,'L',1);
                         $this->cell(2);
                         $this->cell(2,10,':',0,0,'L',0);
-                        $this->cell(146,10,substr($rows->alamat_tinggal,0,80),0,1,'L',1);
-                        if(strlen($rows->alamat_tinggal)>80){
-                        $this->cell(48);
-                        $this->cell(146,10,substr($rows->alamat_tinggal,80,150),0,1,'L',1);
+                        $this->cell(146,10,substr($rows->alamat_tinggal,0,70),0,1,'L',1);
+                        if(strlen($rows->alamat_tinggal)>70){
+                        $this->cell($space_left+12);
+                        $this->cell(146,10,substr($rows->alamat_tinggal,70,130),0,1,'L',1);
                     	}
                     	$this->cell($space_left+12);
                     	$this->cell(5,10,'RT',0,0,'L',1);
@@ -498,8 +499,8 @@ class PDF extends FPDF
 										$this->cell(30,6,"Operator",0,1,'R',1);
 										$this->ln(20);
 										$this->Cell(10);
-										$this->cell(30,6,"Zarkasih, ST.",0,0,'L',1);
-										$this->Cell(85);
+										$this->cell(22,6,"Ahmad Zarkasih, ST.",0,0,'L',1);
+										$this->Cell(90);
 										$operator = $data['f'];
 										$this->cell(30,6,$operator['fullname'],0,0,'L',1);
 

@@ -7,14 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Sistem Informasi Kepegawaian - Asy-syukriyyah SEKUT!! </title>
+    <title>Sistem Informasi Kepegawaian - Asy-syukriyyah</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('asset/asset_index/vendors/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?php echo base_url('asset/asset_index/vendors/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="https://colorlib.com/polygon/gentelella/css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url('asset/asset_index/build/css/custom.min.css')?>" rel="stylesheet">

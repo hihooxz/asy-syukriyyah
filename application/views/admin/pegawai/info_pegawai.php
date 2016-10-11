@@ -100,7 +100,7 @@
                     ?>
                     <td>
                   <a href ="<?php echo base_url($this->uri->segment(1).'/edit-info-pegawai/'.$rows->id_pegawai)?>"><i class="glyphicon glyphicon-edit"></i></a> |
-                  <a href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
+                  <a target="_blank" href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
                   </td>
                   <?php
                   }
