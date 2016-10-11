@@ -590,13 +590,27 @@ class Kepegawaian extends CI_Controller {
 				$formal = $this->mpd->fetchPendidikanFormal($id);
 				if($formal!=FALSE){
 					foreach ($formal as $rows) {
-							$data['tahun_masuk'][$rows->tingkat] = $rows->tahun_masuk;
-							$data['tahun_selesai'][$rows->tingkat] = $rows->tahun_selesai;
-							$data['nama_instansi'][$rows->tingkat] = $rows->nama_instansi;
-							$data['jurusan'][$rows->tingkat] = $rows->jurusan;
-							$data['id_formal'][$rows->tingkat] = $rows->id_pendidikan_normal;
+						$tingkat= $rows->tingkat;
+							$data['tahun_masuk_'.$tingkat] = $rows->tahun_masuk;
+							$data['tahun_selesai_'.$tingkat] = $rows->tahun_selesai;
+							$data['nama_instansi_'.$tingkat] = $rows->nama_instansi;
+							$data['jurusan_'.$tingkat] = $rows->jurusan;
+							$data['id_formal_'.$tingkat] = $rows->id_pendidikan_normal;
 					}
 				}
+
+				$nonformal = $this->mpd->fetchPendidikanNonFormal($id);
+				if($nonformal!=FALSE){
+					foreach ($nonformal as $rows) {
+						$i= $rows->sort_order;
+							$data['tahun_'.$i] = $rows->tahun;
+							$data['lamanya_'.$i] = $rows->lamanya;
+							$data['lembaga_'.$i] = $rows->lembaga;
+							$data['jenis_'.$i] = $rows->jenis;
+							$data['id_nonformal_'.$i] = $rows->id_nonformal;
+					}
+				}
+
 
 
 				$this->form_validation->set_rules('id_pendidikan_normal','Tahun Masuk SD','required');
@@ -604,26 +618,8 @@ class Kepegawaian extends CI_Controller {
 					$this->load->view('admin/index',$data);
 				}
 				else{
-					// $data['save'] = $this->mpd->editDetailPendidikan($_POST,$id);
-					// redirect(base_url($this->uri->segment(1).'/manage-pendidikan/'));
-					// $tahun = $this->input->post('tahun_masuk');
-					// echo $tahun[0];
-					// $post = array();
-					// foreach ( $this->input->post() as $key => $value )
-					// {
-					//     $post[$key] = $this->input->post($key);
-					// }
-					// var_dump($post);
-					$tahun = $this->input->post('tahun_masuk');
-					echo $this->input->post('tahun_masuk[0]');
-				  // if (is_array($tahun)) {
-				  //   foreach ($tahun as $rows => $k) {
-				  //     echo "Owner Name is : " . $k . "<br/>";
-				  //   }
-				  // } else {
-				  //   echo "Owner is not array";
-				  // }
-					//var_dump($this->input->post());
+					$data['save'] = $this->mpd->editDetailPendidikan($_POST,$id);
+					redirect(base_url($this->uri->segment(1).'/manage-pendidikan/'));
 				}
 			}
 	function delete_pendidikan(){

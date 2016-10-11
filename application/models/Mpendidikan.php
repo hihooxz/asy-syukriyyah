@@ -33,6 +33,17 @@ class Mpendidikan extends CI_Model {
     }
     else return FALSE;
   }
+	function fetchPendidikanNonFormal($id) {
+    $this->db->where('diutus',1);
+		$this->db->where('nonformal.id_pendidikan',$id);
+  	$this->db->join('pendidikan','nonformal.id_nonformal = pendidikan.id_pendidikan');
+		$this->db->order_by('tahun','ASC');
+    $query = $this->db->get('nonformal');
+    if($query->num_rows()>0){
+      return $query->result();
+    }
+    else return FALSE;
+  }
 
   function countAllPendidkan() {
     return $this->db->count_all("pendidikan");
@@ -89,39 +100,116 @@ class Mpendidikan extends CI_Model {
 		return 1;
 	}
 	function editDetailPendidikan($data,$id){
-		$formal = $this->mpd->fetchPendidikanFormal($id);
+		$formal = $this->fetchPendidikanFormal($id);
 		if($formal == FALSE){
 			$i = 1;
-			foreach ($formal as $rows ){
-				$array = array(
-						'tingkat' => $data['tingkat'][$i],
-						'tahun_masuk' => $data['tahun_masuk'][$i],
-						'tahun_selesai' => $data['tahun_selesai'][$i],
-						'nama_instansi' => $data['nama_instansi'][$i],
-						'jurusan_pd' => $data['jurusan_pd'][$i],
-						'id_pendidikan' => $id
-					);
-				$this->db->insert('pendidikan_formal',$array);
-				$i++;
+			for($i;$i<=10;$i++){
+				if(isset($data['tahun_masuk'.$i])){
+					if($data['tahun_masuk'.$i] != ''){
+						$array = array(
+								'tingkat' => $data['tingkat'.$i],
+								'tahun_masuk' => $data['tahun_masuk'.$i],
+								'tahun_selesai' => $data['tahun_selesai'.$i],
+								'nama_instansi' => $data['nama_instansi'.$i],
+								'id_pendidikan' => $id
+							);
+							if($data['jurusan'.$i] != ""){
+								$array['jurusan'] = $data['jurusan'.$i];
+							}
+						$this->db->insert('pendidikan_formal',$array);
+					}
+				}
 			}
 		}
 		else{
-			$i = 1;
-			foreach ($formal as $rows ){
-				$array = array(
-						'tingkat' => $data['tingkat'][$i],
-						'tahun_masuk' => $data['tahun_masuk'][$i],
-						'tahun_selesai' => $data['tahun_selesai'][$i],
-						'nama_instansi' => $data['nama_instansi'][$i],
-						'jurusan_pd' => $data['jurusan_pd'][$i],
+			$data = $this->input->post();
+			$i = 0;
+			for ($i;$i<=10;$i++){
+				if(isset($data['id_formal'.$i])){
+					if($data['id_formal'.$i]==''){
+						if($data['tahun_masuk'.$i] != ''){
+						$array = array(
+								'tingkat' => $data['tingkat'.$i],
+								'tahun_masuk' => $data['tahun_masuk'.$i],
+								'tahun_selesai' => $data['tahun_selesai'.$i],
+								'nama_instansi' => $data['nama_instansi'.$i],
+								'id_pendidikan' => $id
+							);
+							if($data['jurusan'.$i] != ""){
+								$array['jurusan'] = $data['jurusan'.$i];
+							}
+						$this->db->insert('pendidikan_formal',$array);
+						} //end of tahun masuk
+					}
+				else{
+					$array = array(
+						'tingkat' => $data['tingkat'.$i],
+						'tahun_masuk' => $data['tahun_masuk'.$i],
+						'tahun_selesai' => $data['tahun_selesai'.$i],
+						'nama_instansi' => $data['nama_instansi'.$i],
+						'jurusan' => $data['jurusan'.$i],
 						'id_pendidikan' => $id
-					);
-					$this->db->where('id_pendidikan_normal',$id);
-					$this->db->update('pendidikan_formal',$array);
-				$i++;
+						);
+						$this->db->where('id_pendidikan_normal',$data['id_formal'.$i]);
+						$this->db->update('pendidikan_formal',$array);
+					}
+				}
 			}
 		}
 
+		$nonformal = $this->fetchPendidikanNonFormal($id);
+		if($nonformal == FALSE){
+			$i = 1;
+			for($i;$i<=5;$i++){
+				$array = array(
+						'sort_order' => $data['sort_order'.$i],
+						'tahun' => $data['tahun'.$i],
+						'lamanya' => $data['lamanya'.$i],
+						'lembaga' => $data['lembaga'.$i],
+						'jenis' => $data['jenis'.$i],
+						'diutus' => 1,
+						'id_pendidikan' => $id
+					);
+				$this->db->insert('nonformal',$array);
+			}
+		}
+		else{
+			$data = $this->input->post();
+			$i = 1;
+			for ($i;$i<=5;$i++){
+				if(isset($data['id_nonformal'.$i])){
+					if($data['id_nonformal'.$i]==''){
+						if($data['tahun'.$i] != ''){
+						$array = array(
+							'sort_order' => $data['sort_order'.$i],
+							'tahun' => $data['tahun'.$i],
+							'lamanya' => $data['lamanya'.$i],
+							'lembaga' => $data['lembaga'.$i],
+							'jenis' => $data['jenis'.$i],
+							'diutus' => 1,
+							'id_pendidikan' => $id
+							);
+						$this->db->insert('nonformal',$array);
+						}
+					}
+				else{
+					$array = array(
+						'sort_order' => $data['sort_order'.$i],
+						'tahun' => $data['tahun'.$i],
+						'lamanya' => $data['lamanya'.$i],
+						'lembaga' => $data['lembaga'.$i],
+						'jenis' => $data['jenis'.$i],
+						'diutus' => 1,
+						'id_pendidikan' => $id
+					);
+						$this->db->where('id_nonformal',$data['id_nonformal'.$i]);
+						$this->db->update('nonformal',$array);
+					}
+				}
+			}
+		}
+
+		// nonformal diutus
 		return 1;
 	}
 	function getPendidikan($id){

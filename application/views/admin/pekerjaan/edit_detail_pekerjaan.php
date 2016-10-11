@@ -288,7 +288,7 @@
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" name="text" placeholder="" name="nama_instansi_2" class="form-control">
+                <input type="text" name="text" placeholder="instansi" name="nama_instansi_2" class="form-control">
               </div>
             </div>
             <div class="col-md-3">
