@@ -32,7 +32,7 @@ class Kepegawaian extends CI_Controller {
 		$data['path_content'] = 'admin/module/statistik';
 
 		$data['data_pegawai'] = $this->mky->totalPegawai();
-		
+
 		$this->load->view('admin/index',$data);
 	}
 	function statistik_unit(){
@@ -71,8 +71,8 @@ class Kepegawaian extends CI_Controller {
 			$data['s2'] = $this->mpj->countPendidikanUnit($id,9);
 			$data['s3'] = $this->mpj->countPendidikanUnit($id,10);
 			$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
-			
-			
+
+
 			$data['data_pegawai'] = $this->mky->totalPegawai();
 			$this->form_validation->set_rules('search','Search','required');
 
@@ -82,7 +82,7 @@ class Kepegawaian extends CI_Controller {
 			}
 			else{
 				$data['results'] = $this->mpj->fetchAllPekerjaanSearch($id,$_POST);
-				$this->load->view('admin/index',$data);	
+				$this->load->view('admin/index',$data);
 			}
 	}
 
@@ -295,54 +295,171 @@ class Kepegawaian extends CI_Controller {
 		}
   }
 	function edit_info_pegawai(){
-			$data['title_web'] = 'Ubah Pegawai | Adminpanel Vorcee';
-			$data['path_content'] = 'admin/pegawai/edit_info_pegawai';
-			$id=$this->uri->segment(3);
-			$data['result']=$this->mod->getDataWhere('pegawai','id_pegawai',$id);
-			if($data['result']==FALSE)
-				redirect(base_url('pegawai/manage-pegawai'));
+    $data['title_web'] = 'Lihat Data Pegawai | Adminpanel Asy-syukriyyah';
+    $data['path_content'] = 'admin/pegawai/edit_info_pegawai';
+    $id = $this->uri->segment(3);
+    $data['result'] = $this->mod->getDataWhere('pegawai','id_pegawai',$id);
+    if($data['result'] == false)
+      redirect(base_url($this->uri->segment(1).'/index'));
 
-				$this->form_validation->set_rules('nama_lengkap','Nama Lengkap','required');
-				$this->form_validation->set_rules('gelar_depan','Gelar Depan','');
-				$this->form_validation->set_rules('gelar_belakang','Gelar Belakang','');
-				$this->form_validation->set_rules('jenis_kelamin','Jenis Kelamin','required');
-				$this->form_validation->set_rules('tempat_lahir','Tempat Lahir','required');
-				$this->form_validation->set_rules('tanggal_lahir','Tanggal Lahir','required');
-				$this->form_validation->set_rules('agama','agama ','required');
-				$this->form_validation->set_rules('alamat_ktp','Alamat Ktp','required');
-				$this->form_validation->set_rules('rt_ktp','RT Berdasarkan KTP','numeric');
-				$this->form_validation->set_rules('rw_ktp','RW Berdasarkan KTP','numeric');
-				$this->form_validation->set_rules('kelurahan_ktp','Kelurahan Berdasarkan KTP','');
-				$this->form_validation->set_rules('kecamatan_ktp','Kecamatan Berdasarkan KTP','');
-				$this->form_validation->set_rules('kota_ktp','Kota Berdasarkan KTP','required');
-				$this->form_validation->set_rules('alamat_tinggal','Alamat Berdasarkan Tempat Tinggal','required');
-				$this->form_validation->set_rules('rt_tinggal','RT Berdasarkan Tempat Tinggal','numeric');
-				$this->form_validation->set_rules('rw_tinggal','RW Berdasarkan Tempat Tinggal','numeric');
-				$this->form_validation->set_rules('kelurahan_tinggal','Kelurahan Berdasarkan Tempat Tinggal','');
-				$this->form_validation->set_rules('kecamatan_tinggal','Kecamatan Berdasarkan Tempat Tinggal','');
-				$this->form_validation->set_rules('kota_tinggal','Kota tinggal','required');
-				$this->form_validation->set_rules('handphone','Handphone','numeric');
-				$this->form_validation->set_rules('no_telepon','Telepon Rumah','numeric');
-			if(!$this->form_validation->run()){
-				$this->load->view('admin/index',$data);
-			}
-			else{
-				$config['upload_path'] = './asset/images/photos';
-				$config['allowed_types'] = 'gif|jpg|png';
-				$config['max_size']	= '2000';
-				$config['file_name'] = $this->input->post('nik')."_".date('Ymd_His');
+    $data['keluarga'] = $this->mod->getDataWhere('keluarga','id_pegawai',$id);
+    $data_keluarga = $this->mkl->fetchDataKeluarga($data['keluarga']['id_keluarga']);
+    if($data_keluarga!=FALSE){
+      foreach ($data_keluarga as $rows) {
+        if($rows->hub_keluarga != 0 && $rows->hub_keluarga != 1){
+          $data['sort_order_anak_'.$rows->sort_order] = $rows->sort_order;
+          $data['nama_anak_'.$rows->sort_order] = $rows->nama_anggota;
+          $data['jenis_kelamin_anak_'.$rows->sort_order] = $rows->jenis_kelamin;
+          $data['status_anak_'.$rows->sort_order] = $rows->kandung;
+          $data['pekerjaan_anak_'.$rows->sort_order] = $rows->pekerjaan;
+          $data['id_data_keluarga_anak_'.$rows->sort_order] = $rows->id_data_keluarga;
+        }
+        else{
+          $data['sort_order_'.$rows->sort_order] = $rows->sort_order;
+          $data['nama_pegawai_'.$rows->sort_order] = $rows->nama_anggota;
+          $data['jenis_kelamin_'.$rows->sort_order] = $rows->jenis_kelamin;
+          $data['kandung_'.$rows->sort_order] = $rows->kandung;
+          $data['pekerjaan_'.$rows->sort_order] = $rows->pekerjaan;
+          $data['id_data_keluarga_'.$rows->sort_order] = $rows->id_data_keluarga;
+        }
+        //echo $data['nama_pegawai_'.$rows->sort_order];
+      }
+    }
+  $saudara_kandung = $this->mkl->fetchSaudaraKandung($data['keluarga']['id_keluarga']);
+  if($saudara_kandung!=FALSE){
+    foreach ($saudara_kandung as $rows) {
+      $data['nama_sk_'.$rows->sort_order] = $rows->nama_saudara_kandung;
+      $data['jenis_kelamin_sk_'.$rows->sort_order] = $rows->jenis_kelamin;
+      $data['ttl_sk_'.$rows->sort_order] = $rows->tanggal_lahir;
+      $data['pekerjaan_sk_'.$rows->sort_order] = $rows->pekerjaan;
+      $data['sort_order_sk_'.$rows->sort_order] = $rows->sort_order;
+      $data['id_saudara_kandung_'.$rows->sort_order] = $rows->id_saudara_kandung;
+      $data['alamat_sk_'.$rows->sort_order] = $rows->alamat;
+    }
+  }
 
-				$this->load->library('upload', $config);
-				if ( ! $this->upload->do_upload()){
-					$save = $this->mky->editInfoPegawai($_POST,$id,FALSE);
-					redirect(base_url($this->uri->segment(1).'/info-pegawai'));
-				}
-				else{
-					$save = $this->mky->editInfoPegawai($_POST,$id,$this->upload->data());
-					redirect(base_url($this->uri->segment(1).'/info-pegawai'));
-				}
-			}
+  $data['pendidikan'] = $this->mod->getDataWhere('pendidikan','id_pegawai',$id);
+  $formal = $this->mpd->fetchPendidikanFormal($data['pendidikan']['id_pendidikan']);
+    if($formal!=FALSE){
+      foreach ($formal as $rows) {
+        $tingkat= $rows->tingkat;
+          $data['tahun_masuk_'.$tingkat] = $rows->tahun_masuk;
+          $data['tahun_selesai_'.$tingkat] = $rows->tahun_selesai;
+          $data['nama_instansi_'.$tingkat] = $rows->nama_instansi;
+          $data['jurusan_'.$tingkat] = $rows->jurusan;
+          $data['id_formal_'.$tingkat] = $rows->id_pendidikan_normal;
+      }
+    }
+
+    $nonformal = $this->mpd->fetchPendidikanNonFormal($id);
+    if($nonformal!=FALSE){
+      foreach ($nonformal as $rows) {
+        $i= $rows->sort_order;
+          $data['tahun_'.$i] = $rows->tahun;
+          $data['lamanya_'.$i] = $rows->lamanya;
+          $data['lembaga_'.$i] = $rows->lembaga;
+          $data['jenis_'.$i] = $rows->jenis;
+          $data['id_nonformal_'.$i] = $rows->id_nonformal;
+      }
+    }
+
+    $nonformaltd = $this->mpd->fetchPendidikanNonFormalTD($id);
+    if($nonformaltd!=FALSE){
+      foreach ($nonformaltd as $rows) {
+        $i= $rows->sort_order;
+          $data['tahun_td'.$i] = $rows->tahun;
+          $data['lamanya_td'.$i] = $rows->lamanya;
+          $data['lembaga_td'.$i] = $rows->lembaga;
+          $data['jenis_td'.$i] = $rows->jenis;
+          $data['id_nonformal_td'.$i] = $rows->id_nonformal;
+      }
+    }
+
+  $data['pekerjaan'] = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$id);
+  $riwayat_kerja = $this->mpj->fetchPekerjaanPegawai($data['pekerjaan']['id_riwayat_kerja']);
+    if($riwayat_kerja!=FALSE){
+      foreach ($riwayat_kerja as $rows) {
+          $data['sort_order_'.$rows->sort_order] = $rows->sort_order;
+          $data['pekerjaan']['tahun_mulai_'.$rows->sort_order] = $rows->tahun_mulai;
+          $data['pekerjaan']['tahun_selesai_'.$rows->sort_order] = $rows->tahun_selesai;
+          $data['pekerjaan']['unit_'.$rows->sort_order] = $rows->unit;
+          $data['pekerjaan']['jabatan_'.$rows->sort_order] = $rows->jabatan;
+          $data['pekerjaan']['id_riwayat_jabatan_'.$rows->sort_order] = $rows->id_riwayat_jabatan;
+      }
+    }
+
+  $riwayat_kerja_diluar = $this->mpj->fetchPekerjaanPegawaiDiluar($data['pekerjaan']['id_riwayat_kerja']);
+    if($riwayat_kerja_diluar!=FALSE){
+      foreach ($riwayat_kerja_diluar as $rows) {
+          $data['sort_order_diluar_'.$rows->sort_order] = $rows->sort_order;
+          $data['pekerjaan']['tahun_diluar_'.$rows->sort_order] = $rows->tahun;
+          $data['pekerjaan']['nama_instansi_'.$rows->sort_order] = $rows->nama_instansi;
+          $data['pekerjaan']['jabatan_diluar_'.$rows->sort_order] = $rows->jabatan;
+          $data['pekerjaan']['alasan_keluar_'.$rows->sort_order] = $rows->alasan_keluar;
+          $data['pekerjaan']['id_riwayat_jabatan_diluar_'.$rows->sort_order] = $rows->id_riwayat_jabatan_diluar;
+      }
+    }
+    $data['pendidikan'] = $this->mod->getDataWhere('pendidikan','id_pegawai',$id);
+    $data['formal'] = $this->mpd->fetchPendidikanFormal($data['pendidikan']['id_pendidikan']);
+    $data['nonformal'] = $this->mpd->fetchPendidikanNonFormal($data['pendidikan']['id_pendidikan']);
+    $data['nonformaltd'] = $this->mpd->fetchPendidikanNonFormalTD($data['pendidikan']['id_pendidikan']);
+
+    $data['jabatan'] = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$id);
+    $data['riwayat_jabatan'] = $this->mod->getDataWhere('riwayat_jabatan','id_riwayat_kerja',$data['jabatan']['id_riwayat_kerja']);
+    $data['riwayat_jabatan_diluar'] = $this->mod->getDataWhere('riwayat_jabatan_diluar','id_riwayat_kerja',$data['jabatan']['id_riwayat_kerja']);
+
+    $this->load->view('admin/index',$data);
 		}
+
+    function process_info_pegawai(){
+  			$data['title_web'] = 'Ubah Pegawai | Adminpanel Vorcee';
+  			$data['path_content'] = 'admin/pegawai/edit_info_pegawai';
+  			$id=$this->uri->segment(3);
+  			$data['result']=$this->mod->getDataWhere('pegawai','id_pegawai',$id);
+  			if($data['result']==FALSE)
+  				redirect(base_url('pegawai/edit-info-pegawai/'.$id));
+
+  				$this->form_validation->set_rules('nama_lengkap','Nama Lengkap','required');
+  				$this->form_validation->set_rules('gelar_depan','Gelar Depan','');
+  				$this->form_validation->set_rules('gelar_belakang','Gelar Belakang','');
+  				$this->form_validation->set_rules('jenis_kelamin','Jenis Kelamin','required');
+  				$this->form_validation->set_rules('tempat_lahir','Tempat Lahir','required');
+  				$this->form_validation->set_rules('tanggal_lahir','Tanggal Lahir','required');
+  				$this->form_validation->set_rules('agama','agama ','required');
+  				$this->form_validation->set_rules('alamat_ktp','Alamat Ktp','required');
+  				$this->form_validation->set_rules('rt_ktp','RT Berdasarkan KTP','numeric');
+  				$this->form_validation->set_rules('rw_ktp','RW Berdasarkan KTP','numeric');
+  				$this->form_validation->set_rules('kelurahan_ktp','Kelurahan Berdasarkan KTP','');
+  				$this->form_validation->set_rules('kecamatan_ktp','Kecamatan Berdasarkan KTP','');
+  				$this->form_validation->set_rules('kota_ktp','Kota Berdasarkan KTP','required');
+  				$this->form_validation->set_rules('alamat_tinggal','Alamat Berdasarkan Tempat Tinggal','required');
+  				$this->form_validation->set_rules('rt_tinggal','RT Berdasarkan Tempat Tinggal','numeric');
+  				$this->form_validation->set_rules('rw_tinggal','RW Berdasarkan Tempat Tinggal','numeric');
+  				$this->form_validation->set_rules('kelurahan_tinggal','Kelurahan Berdasarkan Tempat Tinggal','');
+  				$this->form_validation->set_rules('kecamatan_tinggal','Kecamatan Berdasarkan Tempat Tinggal','');
+  				$this->form_validation->set_rules('kota_tinggal','Kota tinggal','required');
+  				$this->form_validation->set_rules('handphone','Handphone','numeric');
+  				$this->form_validation->set_rules('no_telepon','Telepon Rumah','numeric');
+  			if(!$this->form_validation->run()){
+  				redirect(base_url($this->uri->segment(1).'/edit-info-pegawai/'.$id));
+  			}
+  			else{
+  				$config['upload_path'] = './asset/images/photos';
+  				$config['allowed_types'] = 'gif|jpg|png';
+  				$config['max_size']	= '2000';
+  				$config['file_name'] = $this->input->post('nik')."_".date('Ymd_His');
+
+  				$this->load->library('upload', $config);
+  				if ( ! $this->upload->do_upload()){
+  					$save = $this->mky->editInfoPegawai($_POST,$id,FALSE);
+  					redirect(base_url($this->uri->segment(1).'/edit-info-pegawai/'.$id));
+  				}
+  				else{
+  					$save = $this->mky->editInfoPegawai($_POST,$id,$this->upload->data());
+  					redirect(base_url($this->uri->segment(1).'/edit-info-pegawai/'.$id));
+  				}
+  			}
+  		}
 	function process_data_pegawai(){
 		$this->form_validation->set_rules('nama_lengkap','Nama Lengkap','required');
 				$this->form_validation->set_rules('gelar_depan','Gelar Depan','');
@@ -727,7 +844,7 @@ class Kepegawaian extends CI_Controller {
 
 			$id = $this->uri->segment(3);
 			$data['result'] = $this->mpj->getPekerjaan($id);
-			
+
 			$riwayat_kerja = $this->mpj->fetchPekerjaanPegawai($id);
 				if($riwayat_kerja!=FALSE){
 					foreach ($riwayat_kerja as $rows) {
@@ -766,7 +883,7 @@ class Kepegawaian extends CI_Controller {
 				$this->load->view('admin/index',$data);
 			else{
 				$data['save'] = $this->mpj->editDetailPekerjaan($_POST,$id);
-				redirect(base_url($this->uri->segment(1).'/manage-pekerjaan/'));	
+				redirect(base_url($this->uri->segment(1).'/manage-pekerjaan/'));
 			}
 		}
 
