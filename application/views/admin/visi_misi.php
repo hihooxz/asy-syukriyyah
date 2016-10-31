@@ -79,7 +79,7 @@
                     </a>
                   </h3>
                   <h1>Dept. Support <br />
-                  Asy-syukriyyah</h1>
+                  Asy-Syukriyyah</h1>
                   <p>©2016 All Rights Reserved. Developed By <a href="http://dzillaweb.com">DzillWeb</a></p>
                 </div>
               </div>

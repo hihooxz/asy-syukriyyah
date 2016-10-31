@@ -70,7 +70,7 @@
     });
     $('#mulai_tugas').daterangepicker({
       "singleDatePicker": true,
-      format: 'YYYY',
+      format: 'YYYY-MM-DD',
       "minDate": "1980/01/01",
       "showDropdowns":true
     });

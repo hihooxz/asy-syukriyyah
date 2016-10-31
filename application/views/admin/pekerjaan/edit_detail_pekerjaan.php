@@ -19,7 +19,8 @@
       </div>
       <div class="x_content">
         <br />
-        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post"  >
+        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post"  action="">
+        <input type="hidden" name="id_riwayat_kerja" value="<?php echo $this->uri->segment(3); ?>">
           <?php echo validation_errors()?>
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Pegawai
@@ -153,7 +154,7 @@
             </div>
           </div>
           <div class="row">
-            <span><h5>Riwayat Jabatan Di Asy-Syukriyah</h5></span>
+            <span><h5>Riwayat Pekerjaan dan Jabatan di asy-syukriyyah</h5></span>
             <div class="col-md-3">
               <h4>Tahun Mulai</h4>
             </div>
@@ -170,85 +171,95 @@
           <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_mulai_1" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_mulai_1" class="form-control" value="<?php if(isset($tahun_mulai_1)) echo $tahun_mulai_1 ?>">
+                  <input type="hidden" name="id_riwayat_jabatan_1" value="<?php if(isset($id_riwayat_jabatan_1)) echo $id_riwayat_jabatan_1 ?>">
+                  <input type="hidden" name="sort_order_1" value="1">
                 </div>
               </div>
               <div class="col-md-3">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_selesai_1" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_selesai_1" class="form-control" value="<?php if(isset($tahun_selesai_1)) echo $tahun_selesai_1 ?>">
               </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Unit " name="unit_1" class="form-control">
+              <input type="text"  placeholder="Unit " name="unit_1" class="form-control" value="<?php if(isset($unit_1)) echo $unit_1 ?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Jabatan" name="jabatan_1" class="form-control">
+              <input type="text" placeholder="Jabatan" name="jabatan_1" class="form-control" value="<?php if(isset($jabatan_1)) echo $jabatan_1 ?>">
             </div>
           </div>
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <input type="text" name="text" placeholder="Tahun " name="tahun_mulai_2" class="form-control">
+                <input type="text" placeholder="Tahun " name="tahun_mulai_2" class="form-control" value="<?php if(isset($tahun_mulai_2)) echo $tahun_mulai_2?>">
+                <input type="hidden" name="id_riwayat_jabatan_2" value="<?php if(isset($id_riwayat_jabatan_2)) echo $id_riwayat_jabatan_2 ?>">
+                <input type="hidden" name="sort_order_2" value="2">
               </div>
             </div>
             <div class="col-md-3">
-                <input type="text" name="text" placeholder="Tahun " name="tahun_selesai_2" class="form-control">
+                <input type="text" placeholder="Tahun " name="tahun_selesai_2" class="form-control" value="<?php if(isset($tahun_selesai_2)) echo $tahun_selesai_2 ?>">
             </div>
           <div class="col-md-3">
-            <input type="text" name="text" placeholder="Unit " name="unit_2" class="form-control">
+            <input type="text" placeholder="Unit " name="unit_2" class="form-control" value="<?php if(isset($unit_2)) echo $unit_2 ?>">
           </div>
           <div class="col-md-3">
-            <input type="text" name="text" placeholder="Jabatan" name="jabatan_2" class="form-control">
+            <input type="text" placeholder="Jabatan" name="jabatan_2" class="form-control"  value="<?php if(isset($jabatan_2)) echo $jabatan_2 ?>">
           </div>
           </div>
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <input type="text" name="text" placeholder="Tahun " name="tahun_mulai_3" class="form-control">
+                <input type="text" placeholder="Tahun " name="tahun_mulai_3" class="form-control" value="<?php if(isset($tahun_mulai_3)) echo $tahun_mulai_3 ?>">
+                <input type="hidden" name="id_riwayat_jabatan_3" value="<?php if(isset($id_riwayat_jabatan_3)) echo $id_riwayat_jabatan_3 ?>">
+                <input type="hidden" name="sort_order_3" value="3">
               </div>
             </div>
             <div class="col-md-3">
-                <input type="text" name="text" placeholder="Tahun " name="tahun_selesai_3" class="form-control">
+                <input type="text" placeholder="Tahun " name="tahun_selesai_3" class="form-control" value="<?php if(isset($tahun_selesai_3)) echo $tahun_selesai_3 ?>">
             </div>
           <div class="col-md-3">
-            <input type="text" name="text" placeholder="Unit " name="unit_3" class="form-control">
+            <input type="text" placeholder="Unit " name="unit_3" class="form-control" value="<?php if(isset($unit_3)) echo $unit_3 ?>">
           </div>
           <div class="col-md-3">
-            <input type="text" name="text" placeholder="Jabatan" name="jabatan_3" class="form-control">
+            <input type="text" placeholder="Jabatan" name="jabatan_3" class="form-control"  value="<?php if(isset($jabatan_3)) echo $jabatan_3 ?>">
           </div>
           </div>
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <input type="text" name="text" placeholder="Tahun " name="tahun_mulai_4" class="form-control">
+                <input type="text" placeholder="Tahun " name="tahun_mulai_4" class="form-control" value="<?php if(isset($tahun_mulai_4)) echo $tahun_mulai_4 ?>">
+                <input type="hidden" name="id_riwayat_jabatan_4" value="<?php if(isset($id_riwayat_jabatan_4)) echo $id_riwayat_jabatan_4 ?>">
+                <input type="hidden" name="sort_order_4" value="4">
               </div>
             </div>
             <div class="col-md-3">
-                <input type="text" name="text" placeholder="Tahun " name="tahun_selesai_4" class="form-control">
+                <input type="text" placeholder="Tahun " name="tahun_selesai_4" class="form-control" value="<?php if(isset($tahun_selesai_4)) echo $tahun_selesai_4 ?>">
             </div>
           <div class="col-md-3">
-            <input type="text" name="text" placeholder="Unit " name="unit_4" class="form-control">
+            <input type="text" placeholder="Unit " name="unit_4" class="form-control" value="<?php if(isset($unit_4)) echo $unit_4 ?>">
           </div>
           <div class="col-md-3">
-            <input type="text" name="text" placeholder="Jabatan" name="jabatan_4" class="form-control">
+            <input type="text" placeholder="Jabatan" name="jabatan_4" class="form-control"  value="<?php if(isset($jabatan_4)) echo $jabatan_4 ?>">
           </div>
           </div>
           <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_mulai_5" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_mulai_5" class="form-control" value="<?php if(isset($tahun_mulai_5)) echo $tahun_mulai_5 ?>">
+                  <input type="hidden" name="id_riwayat_jabatan_5" value="<?php if(isset($id_riwayat_jabatan_5)) echo $id_riwayat_jabatan_5 ?>">
+                  <input type="hidden" name="sort_order_5" value="5">
                 </div>
               </div>
               <div class="col-md-3">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_selesai_5" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_selesai_5" class="form-control" value="<?php if(isset($tahun_selesai_5)) echo $tahun_selesai_5 ?>">
               </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Unit " name="unit_5" class="form-control">
+              <input type="text" placeholder="Unit " name="unit_5" class="form-control" value="<?php if(isset($unit_5)) echo $unit_5 ?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Jabatan" name="jabatan_5" class="form-control">
+              <input type="text" placeholder="Jabatan" name="jabatan_5" class="form-control"  value="<?php if(isset($jabatan_5)) echo $jabatan_5 ?>">
             </div>
           </div>
           <div class="row">
-            <span><h5>RiwayatPekerjaan dan Jabatan Selain di asy-syukriyyah</h5></span>
+            <span><h5>Riwayat Pekerjaan dan Jabatan Selain di asy-syukriyyah</h5></span>
             <div class="col-md-3">
               <h4>Tahun</h4>
             </div>
@@ -266,90 +277,100 @@
             <div class="col-md-6">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_1" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_diluar_1" class="form-control" value="<?php if(isset($tahun_diluar_1)) echo $tahun_diluar_1?>">
+                  <input type="hidden" name="id_riwayat_jabatan_diluar_1" value="<?php if(isset($id_riwayat_jabatan_diluar_1)) echo $id_riwayat_jabatan_diluar_1 ?>">
+                  <input type="hidden" name="sort_order_diluar_1" value="1">
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" name="text" placeholder="" name="nama_instansi_1" class="form-control">
+                <input type="text" placeholder="Instansi" name="nama_instansi_1" class="form-control" value="<?php if(isset($nama_instansi_1)) echo $nama_instansi_1?>">
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Nama Lembaga " name="jabatan_1" class="form-control">
+              <input type="text" placeholder="Jabatan " name="jabatan_diluar_1" class="form-control" value="<?php if(isset($jabatan_diluar_1)) echo $jabatan_diluar_1?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Pelatihan" name="alasan_keluar_1" class="form-control">
+              <input type="text" placeholder="Alasan" name="alasan_keluar_1" class="form-control" value="<?php if(isset($alasan_keluar_1)) echo $alasan_keluar_1?>">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_2" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_2" class="form-control"  value="<?php if(isset($tahun_diluar_2)) echo $tahun_diluar_2?>">
+                  <input type="hidden" name="id_riwayat_jabatan_diluar_2" value="<?php if(isset($id_riwayat_jabatan_diluar_2)) echo $id_riwayat_jabatan_diluar_2 ?>">
+                  <input type="hidden" name="sort_order_diluar_2" value="2">
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" name="text" placeholder="instansi" name="nama_instansi_2" class="form-control">
+                <input type="text" placeholder="Instansi" name="nama_instansi_2" class="form-control"  value="<?php if(isset($nama_instansi_2)) echo $nama_instansi_2?>">
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Nama Lembaga " name="jabatan_2" class="form-control">
+              <input type="text" placeholder="Jabatan " name="jabatan_diluar_2" class="form-control" value="<?php if(isset($jabatan_diluar_2)) echo $jabatan_diluar_2?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Pelatihan" name="alasan_keluar_2" class="form-control">
+              <input type="text" placeholder="Alasan" name="alasan_keluar_2" class="form-control" value="<?php if(isset($alasan_keluar_2)) echo $alasan_keluar_2?>">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_3" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_3" class="form-control"  value="<?php if(isset($tahun_diluar_3)) echo $tahun_diluar_3?>">
+                  <input type="hidden" name="id_riwayat_jabatan_diluar_3" value="<?php if(isset($id_riwayat_jabatan_diluar_3)) echo $id_riwayat_jabatan_diluar_3 ?>">
+                  <input type="hidden" name="sort_order_diluar_3" value="3">
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" name="text" placeholder="" name="nama_instansi_3" class="form-control">
+                <input type="text" placeholder="Instansi" name="nama_instansi_3" class="form-control"  value="<?php if(isset($nama_instansi_3)) echo $nama_instansi_3?>">
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Nama Lembaga " name="jabatan_3" class="form-control">
+              <input type="text" placeholder="Jabatan" name="jabatan_diluar_3" class="form-control" value="<?php if(isset($jabatan_diluar_3)) echo $jabatan_diluar_3?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Pelatihan" name="alasan_keluar_3" class="form-control">
+              <input type="text" placeholder="Alasan" name="alasan_keluar_3" class="form-control" value="<?php if(isset($alasan_keluar_3)) echo $alasan_keluar_3?>">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_4" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_4" class="form-control"  value="<?php if(isset($tahun_diluar_4)) echo $tahun_diluar_4?>">
+                  <input type="hidden" name="id_riwayat_jabatan_diluar_4" value="<?php if(isset($id_riwayat_jabatan_diluar_4)) echo $id_riwayat_jabatan_diluar_4 ?>">
+                  <input type="hidden" name="sort_order_diluar_4" value="4">
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" name="text" placeholder="" name="nama_instansi_4" class="form-control">
+                <input type="text" placeholder="Instansi" name="nama_instansi_4" class="form-control"  value="<?php if(isset($nama_instansi_4)) echo $nama_instansi_4?>">
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Nama Lembaga " name="jabatan_4" class="form-control">
+              <input type="text" placeholder="Jabatan" name="jabatan_diluar_4" class="form-control" value="<?php if(isset($jabatan_diluar_4)) echo $jabatan_diluar_4?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Pelatihan" name="alasan_keluar_4" class="form-control">
+              <input type="text" placeholder="Alasan" name="alasan_keluar_4" class="form-control" value="<?php if(isset($alasan_keluar_4)) echo $alasan_keluar_4?>">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Tahun " name="tahun_5" class="form-control">
+                  <input type="text" placeholder="Tahun " name="tahun_5" class="form-control"  value="<?php if(isset($tahun_diluar_5)) echo $tahun_diluar_5?>">
+                  <input type="hidden" name="id_riwayat_jabatan_diluar_5" value="<?php if(isset($id_riwayat_jabatan_diluar_5)) echo $id_riwayat_jabatan_diluar_5 ?>">
+                  <input type="hidden" name="sort_order_diluar_5" value="5">
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" name="text" placeholder="" name="nama_instansi_5" class="form-control">
+                <input type="text" placeholder="Instansi" name="nama_instansi_5" class="form-control"  value="<?php if(isset($nama_instansi_5)) echo $nama_instansi_5?>">
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Nama Lembaga " name="jabatan_5" class="form-control">
+              <input type="text" placeholder="Jabatan" name="jabatan_diluar_5" class="form-control" value="<?php if(isset($jabatan_diluar_5)) echo $jabatan_diluar_5?>">
             </div>
             <div class="col-md-3">
-              <input type="text" name="text" placeholder="Pelatihan" name="alasan_keluar_5" class="form-control">
+              <input type="text" placeholder="Alasan" name="alasan_keluar_5" class="form-control" value="<?php if(isset($alasan_keluar_5)) echo $alasan_keluar_5?>">
             </div>
           </div>
           <div class="ln_solid"></div>

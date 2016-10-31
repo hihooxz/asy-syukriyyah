@@ -65,8 +65,15 @@
               <?php
             		if($results!=FALSE){
             			foreach ($results as $rows) {
-            				?>
-            				<tr>
+                    $status = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$rows->id_pegawai);
+                    if($status != FALSE){
+                      if($status['status_aktif'] == 1)
+                        $class = "class='text-danger'";
+                      else echo $class = "";  
+                    }
+                    else echo $class = "";
+                    ?>
+                    <tr <?php echo $class;?>>
                       <td><?php echo $rows->nama_lengkap ?></td>
                       <td><?php
                       if( $rows->status_pernikahan == 0)
@@ -85,7 +92,7 @@
                       if($this->session->userdata('role')==1){
                         ?>
                       <td>
-                        <a title="Edit Keluarga" href ="<?php echo base_url($this->uri->segment(1).'/edit-keluarga/'.$rows->id_keluarga)?>"><i class="glyphicon glyphicon-edit"></i></a> |
+                        <!--<a title="Edit Keluarga" href ="<?php echo base_url($this->uri->segment(1).'/edit-keluarga/'.$rows->id_keluarga)?>"><i class="glyphicon glyphicon-edit"></i></a> |-->
                         <a title="Edit Detail Keluarga" href ="<?php echo base_url($this->uri->segment(1).'/edit-detail-keluarga/'.$rows->id_keluarga)?>"><i class="fa fa-users"></i></a>
                         <!--<a href ="<?php echo base_url($this->uri->segment(1).'/delete-keluarga/'.$rows->id_keluarga)?>" onclick="return confirm('Are You Sure want to delete?')">
                       <span class="glyphicon-class"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a></span></span>

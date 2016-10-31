@@ -64,8 +64,15 @@
               <?php
             		if($results!=FALSE){
             			foreach ($results as $rows) {
-            				?>
-            				<tr>
+                    $status = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$rows->id_pegawai);
+                    if($status != FALSE){
+                      if($status['status_aktif'] == 1)
+                        $class = "class='text-danger'";
+                      else echo $class = "";  
+                    }
+                    else echo $class = "";
+                    ?>
+                    <tr <?php echo $class;?>>
                       <td><?php echo $rows->nama_lengkap ?></td>
                       <td><?php
                       if( $rows->pendidikan_terakhir == 0)
@@ -126,7 +133,7 @@
                         ?>
 
                       <td>
-                        <a title="Edit Pendidikan" href ="<?php echo base_url($this->uri->segment(1).'/edit-pendidikan/'.$rows->id_pendidikan)?>"><i class="glyphicon glyphicon-edit"></i></a> |
+                        <!--<a title="Edit Pendidikan" href ="<?php echo base_url($this->uri->segment(1).'/edit-pendidikan/'.$rows->id_pendidikan)?>"><i class="glyphicon glyphicon-edit"></i></a> |-->
                         <a title="Edit Detail Pendidikan" href ="<?php echo base_url($this->uri->segment(1).'/edit-detail-pendidikan/'.$rows->id_pendidikan)?>"><i class="fa fa-users"></i></a>
                       <!--  <a href ="<?php echo base_url($this->uri->segment(1).'/delete-pendidikan/'.$rows->id_pendidikan)?>" onclick="return confirm('Are You Sure want to delete?')">
                       <span class="glyphicon-class"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a></span></span>

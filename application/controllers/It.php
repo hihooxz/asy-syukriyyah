@@ -18,9 +18,7 @@ class It extends CI_Controller {
 		$data['title_web']= 'adminpanel | Asy-syukriyyah';
 		$data['path_content'] = 'admin/module/dashboard';
 
-		$data['total_pegawai'] = $this->mod->countData('pegawai');
-		$data['pegawai_laki_laki'] = $this->mod->countWhereData('pegawai','jenis_kelamin',1);
-		$data['pegawai_perempuan'] = $this->mod->countWhereData('pegawai','jenis_kelamin',2);
+		$data['data_pegawai'] = $this->mky->totalPegawai();
 		$this->load->view('admin/index',$data);
 	}
 
@@ -28,42 +26,7 @@ class It extends CI_Controller {
 		$data['title_web']= 'Statistik | Asy-syukriyyah';
 		$data['path_content'] = 'admin/module/statistik';
 
-		$data['total_pegawai'] = $this->mod->countData('pegawai');
-		$data['pegawai_laki_laki'] = $this->mod->countWhereData('pegawai','jenis_kelamin',1);
-		$data['pegawai_perempuan'] = $this->mod->countWhereData('pegawai','jenis_kelamin',2);
-		$data['pegawai_tetap'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',1);
-		$data['pegawai_honorer'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',2);
-		$data['pegawai_kontrak'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',3);
-		$data['cpt'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',4);
-		$data['dpk_gbs'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',5);
-		$data['guru_tetap'] = $this->mpj->countGuruTetap();
-
-		//perunit
-		$data['tkit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',6); // TK Islam
-		$data['yayasan'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',1)+
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',2) +
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',3) +
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',4) +
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',5); // Yayasan
-		$data['sdit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',7); // SDIT
-		$data['miplus'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',8); // MI Plus
-		$data['mts'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',9); // MTs
-		$data['smpit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',10); // SMPIT
-		$data['smait'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',11); // SMAIT
-
-		// pendidikan
-		$data['ts'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',0); // Tidak Sekolah
-		$data['sd'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',1);
-		$data['smp'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',2);
-		$data['sma'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',3);
-		$data['d1'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',4);
-		$data['d2'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',5);
-		$data['d3'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',6);
-		$data['d4'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',7);
-		$data['s1'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',8);
-		$data['s2'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',9);
-		$data['s3'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',10);
-		$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
+		$data['data_pegawai'] = $this->mky->totalPegawai();
 		$this->load->view('admin/index',$data);
 	}
 	function statistik_unit(){

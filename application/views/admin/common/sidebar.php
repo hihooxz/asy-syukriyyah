@@ -34,12 +34,6 @@
               <li><a href="<?php echo base_url('kepegawaian/info-pegawai') ?>">Data Informasi Personal</a></li>
             </ul>
           </li>
-          <li><a><i class="fa fa-heart"></i>Keluarga <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="<?php echo base_url('kepegawaian/add-keluarga') ?>">Tambah Data Keluarga</a></li>
-              <li><a href="<?php echo base_url('kepegawaian/manage-keluarga') ?>">Data Keluarga</a></li>
-            </ul>
-          </li>
           <li><a><i class="fa fa-graduation-cap"></i>Pendidikan <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="<?php echo base_url('kepegawaian/add-pendidikan') ?>">Tambah Data Pendidikan</a></li>
@@ -52,6 +46,12 @@
               <li><a href="<?php echo base_url('kepegawaian/manage-pekerjaan') ?>">Data Pekerjaan & Jabatan</a></li>
             </ul>
           </li>
+          <li><a><i class="fa fa-heart"></i>Keluarga <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="<?php echo base_url('kepegawaian/add-keluarga') ?>">Tambah Data Keluarga</a></li>
+              <li><a href="<?php echo base_url('kepegawaian/manage-keluarga') ?>">Data Keluarga</a></li>
+            </ul>
+          </li>
           <!--<li><a><i class="fa fa-thumbs-up"></i>Keg. Organisasi <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="<?php echo base_url('kepegawaian/add-organisasi') ?>">Tambah Data Organisasi</a></li>
@@ -61,7 +61,7 @@
           <?php
         }   else if($this->session->userdata('role') == 3){
        ?>
-       <li><a><i class="fa fa-info"></i>Informasi Personal <span class="fa fa-chevron-down"></span></a>
+       <!--<li><a><i class="fa fa-info"></i>Informasi Personal <span class="fa fa-chevron-down"></span></a>
          <ul class="nav child_menu">
 
            <li><a href="<?php echo base_url($this->uri->segment(1).'/info-pegawai') ?>">Data Informasi Personal</a></li>
@@ -84,11 +84,11 @@
 
            <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-pekerjaan') ?>">Data Pekerjaan & Jabatan</a></li>
          </ul>
-       </li>
+       </li>-->
       <?php
     } else if($this->session->userdata('role') == 4){
       ?>
-
+      <!--
    <li><a><i class="fa fa-info"></i>Informasi Personal <span class="fa fa-chevron-down"></span></a>
      <ul class="nav child_menu">
 
@@ -112,7 +112,7 @@
 
        <li><a href="<?php echo base_url($this->uri->segment(1).'/manage-pekerjaan') ?>">Data Pekerjaan & Jabatan</a></li>
      </ul>
-   </li>
+   </li>-->
   <?php
 }
   ?>

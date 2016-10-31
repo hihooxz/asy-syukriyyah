@@ -45,6 +45,7 @@
         <table id="datatable" class="table table-striped table-bordered">
           <thead>
             <tr class="headings">
+              <th class="column-title">NIPA/th>
               <th class="column-title">Nama Lengkap </th>
               <th class="column-title">Jenis Kelamin </th>
               <th class="column-title">TTL </th>
@@ -66,6 +67,7 @@
             			foreach ($results as $rows) {
             				?>
             				<tr>
+                      <td><?php echo $rows->nik?></td>
                       <td><?php echo $rows->gelar_depan."". $rows->nama_lengkap ." ". $rows->gelar_belakang ?></td>
                       <td><?php if($rows->jenis_kelamin==1) echo "Laki-Laki"; else echo "Perempuan"; ?></td>
                       <td><?php echo $rows->tempat_lahir.", ".date(' d M Y ',strtotime($rows->tanggal_lahir))?></td>

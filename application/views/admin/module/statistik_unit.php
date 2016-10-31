@@ -25,6 +25,9 @@
               else if($id == 11){
                 echo "SMAIT";
               }
+              else if($id == "tidak-aktif"){
+                echo "Tidak Aktif";
+              }
               else{
                 echo "Lainnya";
               }
@@ -111,7 +114,33 @@
           <div class="count"><?php echo $s3?></div>
         </div>
         <div class="clearfix"></div>
+        <a href="<?php echo base_url($this->uri->segment(1).'/statistik')?>">
+          <button class="btn btn-default"><i class="fa fa-arrow-left"></i> Kembali</button>
+        </a>
         <?php if($this->session->userdata('role')!=2) { ?>
+          <div class="title_right">
+          <form method="POST" action="">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+              <?php
+                $options = array(
+                      'nik' => 'NIK',
+                      'nama_lengkap'=>'Nama Lengkap',
+                      'gelar_depan' => 'Gelar Depan',
+                      'gelar_belakang' => 'Gelar Belakang',
+                      'tanggal_lahir' => 'Tanggal Lahir'
+                );
+                echo form_dropdown('by',$options,set_value('by'),"class='form-control'");
+              ?>
+            </div>
+            <div class="input-group top_search">
+              <input type="text" name="search" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+              </span>
+            </div>
+            </form>
+          </div>
         <div class="table-responsive">
           <table class="table table-striped jambo_table bulk_action">
             <thead>
@@ -193,7 +222,8 @@
                           if($this->session->userdata('role')==1){
                         ?>
                         <td>
-                      <a target="_blank" href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
+                      <a title="Download" target="_blank" href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a>
+                      <a title="View" href ="<?php echo base_url($this->uri->segment(1).'/lihat-pegawai/'.$rows->id_pegawai)?>"><i class="fa fa-eye"></i></a>
                       </td>
                       <?php
                       }
@@ -213,7 +243,4 @@
       <?php } ?>
      </div>
 
-        <a href="<?php echo base_url($this->uri->segment(1).'/statistik')?>">
-          <button class="btn btn-default"><i class="fa fa-arrow-left"></i> Kembali</button>
-        </a>
     </div>

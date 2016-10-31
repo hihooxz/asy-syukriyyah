@@ -20,89 +20,92 @@ class Yayasan extends CI_Controller {
 		$data['title_web']= 'adminpanel | Asy-syukriyyah';
 		$data['path_content'] = 'admin/module/dashboard';
 
+		$data['data_pegawai'] = $this->mky->totalPegawai();
 		$data['total_pegawai'] = $this->mod->countData('pegawai');
 		$data['pegawai_laki_laki'] = $this->mod->countWhereData('pegawai','jenis_kelamin',1);
 		$data['pegawai_perempuan'] = $this->mod->countWhereData('pegawai','jenis_kelamin',2);
+
+		$this->form_validation->set_rules('search','Search','required');
+		if(!$this->form_validation->run()){
+		// Ngeload data
+		$perpage = 50;
+		$this->load->library('pagination'); // load libraray pagination
+		$config['base_url'] = base_url($this->uri->segment(1).'/index/'); // configurate link pagination
+		$config['total_rows'] = $this->mod->countData('pegawai');// fetch total record in databae using load
+		$config['per_page'] = $perpage; // Total data in one page
+		$config['uri_segment'] = 3; // catch uri segment where locate in 4th posisition
+		$choice = $config['total_rows']/$config['per_page'] = $perpage; // Total record divided by total data in one page
+		$config['num_links'] = round($choice); // Rounding Choice Variable
+		$config['use_page_numbers'] = TRUE;
+		$this->pagination->initialize($config); // intialize var config
+		$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0; // If uri segment in 4th = 0 so this program not catch the uri segment
+		$data['results'] = $this->mky->fetchPegawai($config['per_page'],$page,$this->uri->segment(3)); // fetch data using limit and pagination
+		$data['links'] = $this->pagination->create_links(); // Make a variable (array) link so the view can call the variable
+		$data['total_rows'] = $this->mod->countData('pegawai'); // Make a variable (array) link so the view can call the variable
 		$this->load->view('admin/index',$data);
+		}
+		else{
+			$data['results'] = $this->mky->fetchPegawaiSearch($_POST); // fetch data using limit and pagination
+			$data['links'] = false;
+			$this->load->view('admin/index',$data);
+		}
 	}
 	public function statistik(){
 		$data['title_web']= 'Statistik | Asy-syukriyyah';
 		$data['path_content'] = 'admin/module/statistik';
 
-		$data['total_pegawai'] = $this->mod->countData('pegawai');
-		$data['pegawai_laki_laki'] = $this->mod->countWhereData('pegawai','jenis_kelamin',1);
-		$data['pegawai_perempuan'] = $this->mod->countWhereData('pegawai','jenis_kelamin',2);
-		$data['pegawai_tetap'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',1);
-		$data['pegawai_honorer'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',2);
-		$data['pegawai_kontrak'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',3);
-		$data['cpt'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',4);
-		$data['dpk_gbs'] = $this->mod->countWhereData('riwayat_kerja','status_kepegawaian',5);
-		$data['guru_tetap'] = $this->mpj->countGuruTetap();
-
-		//perunit
-		$data['tkit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',6); // TK Islam
-		$data['yayasan'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',1)+
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',2) +
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',3) +
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',4) +
-		$this->mod->countWhereData('riwayat_kerja','unit_kerja',5); // Yayasan
-		$data['sdit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',7); // SDIT
-		$data['miplus'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',8); // MI Plus
-		$data['mts'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',9); // MTs
-		$data['smpit'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',10); // SMPIT
-		$data['smait'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',11); // SMAIT
-
-		// pendidikan
-		$data['ts'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',0); // Tidak Sekolah
-		$data['sd'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',1);
-		$data['smp'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',2);
-		$data['sma'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',3);
-		$data['d1'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',4);
-		$data['d2'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',5);
-		$data['d3'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',6);
-		$data['d4'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',7);
-		$data['s1'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',8);
-		$data['s2'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',9);
-		$data['s3'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',10);
-		$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
+		$data['data_pegawai'] = $this->mky->totalPegawai();
 		$this->load->view('admin/index',$data);
 	}
 	function statistik_unit(){
 		$data['title_web']= 'Statistik Unit | Asy-syukriyyah';
-		$data['path_content'] = 'admin/module/statistik_unit';
-		$id = $this->uri->segment(3);
-		$data['results'] = $this->mpj->fetchAllPekerjaan($id);
-		if($id == "")
-			redirect(base_url($this->uri->segment(1).'/statistik'));
+			$data['path_content'] = 'admin/module/statistik_unit';
+			$id = $this->uri->segment(3);
+			$data['results'] = $this->mpj->fetchAllPekerjaan($id);
+			if($id == "")
+				redirect(base_url($this->uri->segment(1).'/statistik'));
 
-		// kepegawaian
-		if($id != "yayasan")
-		$data['total_pegawai'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',$id);
-		else if($id == "yayasan")
-			$data['total_pegawai'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',1)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',2)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',3)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',4)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',5);
+			$data['data_pegawai'] = $this->mky->totalPegawai();
+			// kepegawaian
+			if($id != "yayasan")
+			$data['total_pegawai'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',$id);
+			else if($id == "yayasan")
+				$data['total_pegawai'] = $this->mod->countWhereData('riwayat_kerja','unit_kerja',1)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',2)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',3)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',4)+$this->mod->countWhereData('riwayat_kerja','unit_kerja',5);
 
-		$data['pegawai_laki_laki'] = $this->mpj->countGenderUnit($id,1);
-		$data['pegawai_perempuan'] = $this->mpj->countGenderUnit($id,2);
-		$data['pegawai_tetap'] = $this->mpj->countStatusUnit($id,1);
-		$data['pegawai_honorer'] = $this->mpj->countStatusUnit($id,2);
-		$data['pegawai_kontrak'] = $this->mpj->countStatusUnit($id,3);
-		$data['cpt'] = $this->mpj->countStatusUnit($id,4);
-		$data['dpk_gbs'] = $this->mpj->countStatusUnit($id,5);
+			$data['pegawai_laki_laki'] = $this->mpj->countGenderUnit($id,1);
+			$data['pegawai_perempuan'] = $this->mpj->countGenderUnit($id,2);
+			$data['pegawai_tetap'] = $this->mpj->countStatusUnit($id,1);
+			$data['pegawai_honorer'] = $this->mpj->countStatusUnit($id,2);
+			$data['pegawai_kontrak'] = $this->mpj->countStatusUnit($id,3);
+			$data['cpt'] = $this->mpj->countStatusUnit($id,4);
+			$data['dpk_gbs'] = $this->mpj->countStatusUnit($id,5);
 
-		// pendidikan
-		$data['ts'] = $this->mpj->countPendidikanUnit($id,0);
-		$data['sd'] = $this->mpj->countPendidikanUnit($id,1);
-		$data['smp'] = $this->mpj->countPendidikanUnit($id,2);
-		$data['sma'] = $this->mpj->countPendidikanUnit($id,3);
-		$data['d1'] = $this->mpj->countPendidikanUnit($id,4);
-		$data['d2'] = $this->mpj->countPendidikanUnit($id,5);
-		$data['d3'] = $this->mpj->countPendidikanUnit($id,6);
-		$data['d4'] = $this->mpj->countPendidikanUnit($id,7);
-		$data['s1'] = $this->mpj->countPendidikanUnit($id,8);
-		$data['s2'] = $this->mpj->countPendidikanUnit($id,9);
-		$data['s3'] = $this->mpj->countPendidikanUnit($id,10);
-		$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
-		$this->load->view('admin/index',$data);
+			// pendidikan
+			$data['ts'] = $this->mpj->countPendidikanUnit($id,0);
+			$data['sd'] = $this->mpj->countPendidikanUnit($id,1);
+			$data['smp'] = $this->mpj->countPendidikanUnit($id,2);
+			$data['sma'] = $this->mpj->countPendidikanUnit($id,3);
+			$data['d1'] = $this->mpj->countPendidikanUnit($id,4);
+			$data['d2'] = $this->mpj->countPendidikanUnit($id,5);
+			$data['d3'] = $this->mpj->countPendidikanUnit($id,6);
+			$data['d4'] = $this->mpj->countPendidikanUnit($id,7);
+			$data['s1'] = $this->mpj->countPendidikanUnit($id,8);
+			$data['s2'] = $this->mpj->countPendidikanUnit($id,9);
+			$data['s3'] = $this->mpj->countPendidikanUnit($id,10);
+			$data['paket_c'] = $this->mod->countWhereData('pendidikan','pendidikan_terakhir',11);
+			
+			
+			$data['data_pegawai'] = $this->mky->totalPegawai();
+			$this->form_validation->set_rules('search','Search','required');
+
+			if(!$this->form_validation->run()){
+				$data['results'] = $this->mpj->fetchAllPekerjaan($id);
+				$this->load->view('admin/index',$data);
+			}
+			else{
+				$data['results'] = $this->mpj->fetchAllPekerjaanSearch($id,$_POST);
+				$this->load->view('admin/index',$data);	
+			}	
 	}
 
 	function validLogin(){
@@ -143,8 +146,8 @@ class Yayasan extends CI_Controller {
 		$config['num_links'] = round($choice); // Rounding Choice Variable
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config); // intialize var config
-		$page = ($this->uri->segment(3))? $this->uri->segment(4) : 0; // If uri segment in 4th = 0 so this program not catch the uri segment
-		$data['results'] = $this->mky->fetchPegawai($config['per_page'],$page,$this->uri->segment(4)); // fetch data using limit and pagination
+		$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0; // If uri segment in 4th = 0 so this program not catch the uri segment
+		$data['results'] = $this->mky->fetchPegawai($config['per_page'],$page,$this->uri->segment(3)); // fetch data using limit and pagination
 		$data['links'] = $this->pagination->create_links(); // Make a variable (array) link so the view can call the variable
 		$data['total_rows'] = $this->mod->countData('pegawai'); // Make a variable (array) link so the view can call the variable
 		$this->load->view('admin/index',$data);
@@ -342,5 +345,138 @@ class Yayasan extends CI_Controller {
 			$data['links'] = false;
 			$this->load->view('admin/index',$data);
 		}
+		}
+		public function lihat_pegawai(){
+	  		$data['title_web'] = 'Lihat Data Pegawai | Adminpanel Asy-syukriyyah';
+	  		$data['path_content'] = 'admin/pegawai/lihat_pegawai';
+	  		$id = $this->uri->segment(3);
+	  		$data['result'] = $this->mod->getDataWhere('pegawai','id_pegawai',$id);
+	  		if($data['result'] == false)
+	  			redirect(base_url($this->uri->segment(1).'/index'));
+
+	  		$data['keluarga'] = $this->mod->getDataWhere('keluarga','id_pegawai',$id);
+	  		$data_keluarga = $this->mkl->fetchDataKeluarga($data['keluarga']['id_keluarga']);
+				if($data_keluarga!=FALSE){
+					foreach ($data_keluarga as $rows) {
+						if($rows->hub_keluarga != 0 && $rows->hub_keluarga != 1){
+							$data['sort_order_anak_'.$rows->sort_order] = $rows->sort_order;
+							$data['nama_anak_'.$rows->sort_order] = $rows->nama_anggota;
+							$data['jenis_kelamin_anak_'.$rows->sort_order] = $rows->jenis_kelamin;
+							$data['status_anak_'.$rows->sort_order] = $rows->kandung;
+							$data['pekerjaan_anak_'.$rows->sort_order] = $rows->pekerjaan;
+							$data['id_data_keluarga_anak_'.$rows->sort_order] = $rows->id_data_keluarga;
+						}
+						else{
+							$data['sort_order_'.$rows->sort_order] = $rows->sort_order;
+							$data['nama_pegawai_'.$rows->sort_order] = $rows->nama_anggota;
+							$data['jenis_kelamin_'.$rows->sort_order] = $rows->jenis_kelamin;
+							$data['kandung_'.$rows->sort_order] = $rows->kandung;
+							$data['pekerjaan_'.$rows->sort_order] = $rows->pekerjaan;
+							$data['id_data_keluarga_'.$rows->sort_order] = $rows->id_data_keluarga;
+						}
+						//echo $data['nama_pegawai_'.$rows->sort_order];
+					}
+				}
+			$saudara_kandung = $this->mkl->fetchSaudaraKandung($data['keluarga']['id_keluarga']);
+			if($saudara_kandung!=FALSE){
+				foreach ($saudara_kandung as $rows) {
+					$data['nama_sk_'.$rows->sort_order] = $rows->nama_saudara_kandung;
+					$data['jenis_kelamin_sk_'.$rows->sort_order] = $rows->jenis_kelamin;
+					$data['ttl_sk_'.$rows->sort_order] = $rows->tanggal_lahir;
+					$data['pekerjaan_sk_'.$rows->sort_order] = $rows->pekerjaan;
+					$data['sort_order_sk_'.$rows->sort_order] = $rows->sort_order;
+					$data['id_saudara_kandung_'.$rows->sort_order] = $rows->id_saudara_kandung;
+					$data['alamat_sk_'.$rows->sort_order] = $rows->alamat;
+				}
+			}
+
+			$data['pendidikan'] = $this->mod->getDataWhere('pendidikan','id_pegawai',$id);
+			$formal = $this->mpd->fetchPendidikanFormal($data['pendidikan']['id_pendidikan']);
+				if($formal!=FALSE){
+					foreach ($formal as $rows) {
+						$tingkat= $rows->tingkat;
+							$data['tahun_masuk_'.$tingkat] = $rows->tahun_masuk;
+							$data['tahun_selesai_'.$tingkat] = $rows->tahun_selesai;
+							$data['nama_instansi_'.$tingkat] = $rows->nama_instansi;
+							$data['jurusan_'.$tingkat] = $rows->jurusan;
+							$data['id_formal_'.$tingkat] = $rows->id_pendidikan_normal;
+					}
+				}
+
+				$nonformal = $this->mpd->fetchPendidikanNonFormal($id);
+				if($nonformal!=FALSE){
+					foreach ($nonformal as $rows) {
+						$i= $rows->sort_order;
+							$data['tahun_'.$i] = $rows->tahun;
+							$data['lamanya_'.$i] = $rows->lamanya;
+							$data['lembaga_'.$i] = $rows->lembaga;
+							$data['jenis_'.$i] = $rows->jenis;
+							$data['id_nonformal_'.$i] = $rows->id_nonformal;
+					}
+				}
+
+				$nonformaltd = $this->mpd->fetchPendidikanNonFormalTD($id);
+				if($nonformaltd!=FALSE){
+					foreach ($nonformaltd as $rows) {
+						$i= $rows->sort_order;
+							$data['tahun_td'.$i] = $rows->tahun;
+							$data['lamanya_td'.$i] = $rows->lamanya;
+							$data['lembaga_td'.$i] = $rows->lembaga;
+							$data['jenis_td'.$i] = $rows->jenis;
+							$data['id_nonformal_td'.$i] = $rows->id_nonformal;
+					}
+				}
+
+			$data['pekerjaan'] = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$id);
+			$riwayat_kerja = $this->mpj->fetchPekerjaanPegawai($data['pekerjaan']['id_riwayat_kerja']);
+				if($riwayat_kerja!=FALSE){
+					foreach ($riwayat_kerja as $rows) {
+							$data['sort_order_'.$rows->sort_order] = $rows->sort_order;
+							$data['pekerjaan']['tahun_mulai_'.$rows->sort_order] = $rows->tahun_mulai;
+							$data['pekerjaan']['tahun_selesai_'.$rows->sort_order] = $rows->tahun_selesai;
+							$data['pekerjaan']['unit_'.$rows->sort_order] = $rows->unit;
+							$data['pekerjaan']['jabatan_'.$rows->sort_order] = $rows->jabatan;
+							$data['pekerjaan']['id_riwayat_jabatan_'.$rows->sort_order] = $rows->id_riwayat_jabatan;
+					}
+				}
+
+			$riwayat_kerja_diluar = $this->mpj->fetchPekerjaanPegawaiDiluar($data['pekerjaan']['id_riwayat_kerja']);
+				if($riwayat_kerja_diluar!=FALSE){
+					foreach ($riwayat_kerja_diluar as $rows) {
+							$data['sort_order_diluar_'.$rows->sort_order] = $rows->sort_order;
+							$data['pekerjaan']['tahun_diluar_'.$rows->sort_order] = $rows->tahun;
+							$data['pekerjaan']['nama_instansi_'.$rows->sort_order] = $rows->nama_instansi;
+							$data['pekerjaan']['jabatan_diluar_'.$rows->sort_order] = $rows->jabatan;
+							$data['pekerjaan']['alasan_keluar_'.$rows->sort_order] = $rows->alasan_keluar;
+							$data['pekerjaan']['id_riwayat_jabatan_diluar_'.$rows->sort_order] = $rows->id_riwayat_jabatan_diluar;
+					}
+				}
+	  		$data['pendidikan'] = $this->mod->getDataWhere('pendidikan','id_pegawai',$id);
+	  		$data['formal'] = $this->mpd->fetchPendidikanFormal($data['pendidikan']['id_pendidikan']);
+	  		$data['nonformal'] = $this->mpd->fetchPendidikanNonFormal($data['pendidikan']['id_pendidikan']);
+	  		$data['nonformaltd'] = $this->mpd->fetchPendidikanNonFormalTD($data['pendidikan']['id_pendidikan']);
+
+	  		$data['jabatan'] = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$id);
+	  		$data['riwayat_jabatan'] = $this->mod->getDataWhere('riwayat_jabatan','id_riwayat_kerja',$data['jabatan']['id_riwayat_kerja']);
+	  		$data['riwayat_jabatan_diluar'] = $this->mod->getDataWhere('riwayat_jabatan_diluar','id_riwayat_kerja',$data['jabatan']['id_riwayat_kerja']);
+
+	  		$this->load->view('admin/index',$data);
+	  }
+	  function download_data(){
+			 // Generate PDF by saying hello to the world
+			$id = $this->uri->segment(3);
+	        $a = array('a'=>$this->mky->select_data($id));
+					$b=  array('b'=>$this->mky->get_foto($id));
+					$c=	 array('c'=>$this->mky->fetchNonFormalDiutus($id));
+					$d= array('d' => $this->mky->select_keluarga($id));
+					$e= array('e' => $this->mky->getKeluarga($id));
+					$f = array('f' => $this->mod->getDataWhere('user','id_user',$this->session->userdata('idAdmin')));
+					$g=	 array('g'=>$this->mky->fetchNonFormalTD($id));
+					$h = array('pendidikan_formal' => $this->mpd->fetchPendidikanFormalIdPegawai($id));
+					$i= array('saudara_kandung' => $this->mkl->fetchSaudaraKandungPegawai($id));
+					$j= array('riwayat_jabatan' => $this->mpj->fetchRiwayatJabatan($id));
+					$k= array('riwayat_jabatan_diluar' => $this->mpj->fetchRiwayatJabatanDiluar($id));
+					$res['data'] = array_merge($a, $b,$c,$d,$e,$f,$g,$h,$i,$j,$k);
+	        $this->load->view('admin/pegawai/download',$res);
 		}
 }

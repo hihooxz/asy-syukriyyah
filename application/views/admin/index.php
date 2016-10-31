@@ -10,7 +10,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="" class="site_title"><img src="<?php echo base_url('asset/asset_index/images/logo_st.png')?>"> <span>Asy-syukriyyah</span></a>
+              <a href="" class="site_title"><img src="<?php echo base_url('asset/asset_index/images/logo_st.png')?>"> <span>Asy-Syukriyyah</span></a>
             </div>
 
             <div class="clearfix"></div>

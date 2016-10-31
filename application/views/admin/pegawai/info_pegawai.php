@@ -40,8 +40,8 @@
       <div class="table-responsive">
         <?php if($this->session->userdata('role')==1){ ?>
         <a href="<?php echo base_url($this->uri->segment(1).'/add-info-pegawai')?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button></a>
-        <?php } ?>
         <a href="<?php echo base_url($this->uri->segment(1).'/export')?>" class="btn btn-default blue-stripe ajax" ><img src="<?php echo base_url('asset/images/photos/file_exel.png')?>"  style= "width:30px;"> export</a>
+        <?php } ?>
         <?php
                 echo "<center>".$links."</center>";
               ?>
@@ -56,12 +56,8 @@
               <th class="column-title">Handphone </th>
               <th class="column-title">Tanggal Input</th>
               <th class="column-title">Input BY</th>
-              <?php
-              if($this->session->userdata('role')==1){
-                ?>
               <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
-              <?php } ?>
 
             </tr>
           </thead>
@@ -71,8 +67,15 @@
               <?php
             		if($results!=FALSE){
             			foreach ($results as $rows) {
+                    $status = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$rows->id_pegawai);
+                    if($status != FALSE){
+                      if($status['status_aktif'] == 1)
+                        $class = "class='text-danger'";
+                      else echo $class = "";  
+                    }
+                    else echo $class = "";
             				?>
-            				<tr>
+            				<tr <?php echo $class;?>>
                       <td class="text-center" width="10%">
                         <?php
                           if($rows->foto_pegawai!=""){
@@ -91,20 +94,22 @@
                       <td><?php if($rows->jenis_kelamin==1) echo "L"; else echo "P"; ?></td>
                       <td><?php echo $rows->tempat_lahir.", ".tgl_indo($rows->tanggal_lahir)?></td>
                       <!--<td><?php echo $rows->alamat_ktp?></td>-->
-                      <td><?php echo $rows->alamat_tinggal?></td>
+                      <td><?php echo $rows->alamat_tinggal?>
+                      </td>
                       <td><?php echo $rows->handphone?></td>
                       <td><?php echo tgl_indo_timestamp(strtotime($rows->tanggal_input)) ?></td>
                       <td><?php echo $rows->username ?></td>
+                    <td>
                       <?php
                       if($this->session->userdata('role')==1){
                     ?>
-                    <td>
-                  <a href ="<?php echo base_url($this->uri->segment(1).'/edit-info-pegawai/'.$rows->id_pegawai)?>"><i class="glyphicon glyphicon-edit"></i></a> |
-                  <a target="_blank" href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
-                  </td>
+                  <a title="Edit" href ="<?php echo base_url($this->uri->segment(1).'/edit-info-pegawai/'.$rows->id_pegawai)?>"><i class="glyphicon glyphicon-edit"></i></a> |
+                  <a title="Download" target="_blank" href ="<?php echo base_url($this->uri->segment(1).'/download_data/'.$rows->id_pegawai)?>"> <i class="fa fa-download"></i> </a></span>
                   <?php
                   }
                   ?>
+                  <a title="View" href ="<?php echo base_url($this->uri->segment(1).'/lihat-pegawai/'.$rows->id_pegawai)?>"><i class="fa fa-eye"></i></a>
+                  </td>
 
                     </tr>
             				<?php
