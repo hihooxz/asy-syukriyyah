@@ -157,7 +157,6 @@ class Mkepegawaian extends CI_Model {
 				'gelar_depan' => $data['gelar_depan'],
 				'nik' => $data['nik'],
 				'gelar_belakang' => $data['gelar_belakang'],
-				'jenis_kelamin' => $data['jenis_kelamin'],
 				'tempat_lahir' => $data['tempat_lahir'],
 				'tanggal_lahir' => $data['tanggal_lahir'],
 				'agama' => $data['agama'],
@@ -180,6 +179,9 @@ class Mkepegawaian extends CI_Model {
       if($upload_data!=FALSE){
     	$array['foto_pegawai'] = 'asset/images/photos/'.$upload_data['file_name'];
     }
+		if(isset($data['jenis_kelamin'])){
+				$array['jenis_kelamin'] = $data['jenis_kelamin'];
+		}
       $this->db->where('id_pegawai',$id);
       $this->db->update('pegawai',$array);
       return 1;

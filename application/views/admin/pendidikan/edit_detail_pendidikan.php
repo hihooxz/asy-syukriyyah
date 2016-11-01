@@ -59,7 +59,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Institusi Pendidikan Terakhir</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input  type="text" name="nama_pt" class="form-control col-md-7 col-xs-12" required="required" value="<?php echo $result['nama_pt']?>">
+              <input  type="text" name="nama_pt" class="form-control col-md-7 col-xs-12"  value="<?php echo $result['nama_pt']?>">
             </div>
           </div>
           <div class="form-group">
@@ -88,25 +88,25 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Institusi Pendidikan Ditempuh</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input  type="text" name="nama_pt_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['nama_pt_pd']?>" required>
+              <input  type="text" name="nama_pt_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['nama_pt_pd']?>" >
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Program</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input  type="text" name="program_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['program_pd']?>" required>
+              <input  type="text" name="program_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['program_pd']?>" >
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Jurusan</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input  type="text" name="jurusan_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['jurusan_pd']?>" required>
+              <input  type="text" name="jurusan_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['jurusan_pd']?>" >
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tahun Masuk</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input  type="text" name="tahun_masuk_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['tahun_masuk_pd']?>" required>
+              <input  type="text" name="tahun_masuk_pd" class="form-control col-md-7 col-xs-12" value="<?php echo $result['tahun_masuk_pd']?>">
             </div>
           </div>
                     <div class="row">
@@ -353,7 +353,7 @@
                             <input type="hidden" name="id_nonformal1" value="<?php if(isset($id_nonformal_1)) echo $id_nonformal_1?>">
                             <input type="hidden" name="sort_order1" value="1">
                           <div class="form-group">
-                            <input type="text"  placeholder="Tahun " name="tahun1" class="form-control" 
+                            <input type="text"  placeholder="Tahun " name="tahun1" class="form-control"
                             value="<?php if(isset($tahun_1)) echo $tahun_1?>">
                           </div>
                         </div>
@@ -470,7 +470,7 @@
                             <input type="hidden" name="id_nonformal_td1" value="<?php if(isset($id_nonformal_td1)) echo $id_nonformal_td1?>">
                             <input type="hidden" name="sort_ordertd1" value="1">
                           <div class="form-group">
-                            <input type="text"  placeholder="Tahun " name="tahuntd1" class="form-control" 
+                            <input type="text"  placeholder="Tahun " name="tahuntd1" class="form-control"
                             value="<?php if(isset($tahun_td1)) echo $tahun_td1?>">
                           </div>
                         </div>

@@ -77,10 +77,10 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <div id="gender" class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default <?php if($result['jenis_kelamin']==1) echo "active"?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="jenis_kelamin" value="1" > &nbsp; Laki-Laki &nbsp;
+                      <input type="radio" name="jenis_kelamin" value="1" <?php if($result['jenis_kelamin']==1) echo "selected"?>"> &nbsp; Laki-Laki &nbsp;
                     </label>
                     <label class="btn btn-default <?php if($result['jenis_kelamin']==2) echo "active"?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="jenis_kelamin" value="2" > Perempuan
+                      <input type="radio" name="jenis_kelamin" value="2" <?php if($result['jenis_kelamin']==2) echo "selected"?>"> Perempuan
                     </label>
                   </div>
                 </div>
@@ -201,7 +201,7 @@
           </div>
           <div class="tab-pane" id="keluarga">
             <p class="lead">Data Keluarga</p>
-            <form class="form-horizontal form-label-left">
+            <form action="<?php echo base_url($this->uri->segment(1).'/process-info-keluarga/'.$this->uri->segment(3))?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal form-label-left" id="form-info">
               <?php echo validation_errors()?>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Pegawai
@@ -717,7 +717,7 @@
             </form>
           </div>
           <div class="tab-pane" id="pendidikan">
-            <form class="form-horizontal form-label-left">
+            <form action="<?php echo base_url($this->uri->segment(1).'/process-info-pendidikan/'.$this->uri->segment(3))?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal form-label-left" id="form-info">
             <div class="col-md-12">
               <div class="row">
                       <p class="lead">Data Pendidikan</p>
@@ -1178,6 +1178,11 @@
                       </div>
                     </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
           </form>
           </div>
           <div class="tab-pane" id="pekerjaan">
@@ -1389,6 +1394,11 @@
           <?php
           }
           ?>
+          <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="submit" class="btn btn-success">Submit</button>
+              </div>
+            </div>
             </form>
           </div>
           <!-- <div class="tab-pane" id="sosial">

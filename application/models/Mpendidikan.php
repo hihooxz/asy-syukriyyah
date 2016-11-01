@@ -310,6 +310,70 @@ class Mpendidikan extends CI_Model {
 		$this->db->update('pendidikan',$array);
 		return 1;
 	}
+	function editProcessPendidikan($data,$id){
+		$formal = $this->fetchPendidikanFormal($id);
+		$i = 0;
+		for ($i;$i<=10;$i++){
+			if(isset($data['id_formal'.$i])){
+					$array = array(
+						'tingkat' => $data['tingkat'.$i],
+						'tahun_masuk' => $data['tahun_masuk'.$i],
+						'tahun_selesai' => $data['tahun_selesai'.$i],
+						'nama_instansi' => $data['nama_instansi'.$i],
+						'id_pendidikan' => $id
+						);
+						if(isset($data['jurusan'.$i])){
+							if($data['jurusan'.$i] != ""){
+								$array['jurusan'] = $data['jurusan'.$i];
+							}
+						}
+						$this->db->where('id_pendidikan_normal',$data['id_formal'.$i]);
+						$this->db->update('pendidikan_formal',$array);
+					}
+				}
+
+
+		// nonformal diutus
+		$nonformal = $this->fetchPendidikanNonFormal($id);
+		$data = $this->input->post();
+		$i = 1;
+		for ($i;$i<=5;$i++){
+			if(isset($data['id_nonformal'.$i])){
+					$array = array(
+						'sort_order' => $data['sort_order'.$i],
+						'tahun' => $data['tahun'.$i],
+						'lamanya' => $data['lamanya'.$i],
+						'lembaga' => $data['lembaga'.$i],
+						'jenis' => $data['jenis'.$i],
+						'diutus' => 1,
+						'id_pendidikan' => $id
+					);
+						$this->db->where('id_nonformal',$data['id_nonformal'.$i]);
+						$this->db->update('nonformal',$array);
+					}
+				}
+
+		// nonformal tidak diutus
+		$nonformaltd = $this->fetchPendidikanNonFormalTD($id);
+		$i = 1;
+		for ($i;$i<=5;$i++){
+			if($data['tahun'.$i] == ''){
+				break;
+			}
+					$array = array(
+						'sort_order' => $data['sort_ordertd'.$i],
+						'tahun' => $data['tahuntd'.$i],
+						'lamanya' => $data['lamanyatd'.$i],
+						'lembaga' => $data['lembagatd'.$i],
+						'jenis' => $data['jenistd'.$i],
+						'diutus' => 0,
+						'id_pendidikan' => $id
+					);
+						$this->db->where('id_nonformal',$data['id_nonformal_td'.$i]);
+						$this->db->update('nonformal',$array);
+					}
+		return 1;
+	}
 	function getPendidikan($id){
 		$this->db->where('id_pendidikan',$id);
 		$this->db->join('pegawai','pegawai.id_pegawai = pendidikan.id_pegawai');
