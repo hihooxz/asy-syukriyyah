@@ -666,9 +666,11 @@ class Kepegawaian extends CI_Controller {
 					$data['alamat_sk_'.$rows->sort_order] = $rows->alamat;
 				}
 			}
-			$this->form_validation->set_rules('id_pegawai','ID Pegawai');
+			$this->form_validation->set_rules('id_pegawai','ID Pegawai','required');
 			if(!$this->form_validation->run()){
-				$this->load->view('admin/index',$data);
+				$error = validation_errors();
+				$this->session->set_flashdata(array('error'=>TRUE));
+				redirect(base_url($this->uri->segment(1).'/edit-info-pegawai/'.$id));
 			}
 			else{
 				$save = $this->mkl->editDetailKeluarga($_POST,$keluarga['id_keluarga']);
@@ -1000,6 +1002,62 @@ class Kepegawaian extends CI_Controller {
 				redirect(base_url($this->uri->segment(1).'/manage-pekerjaan/'));
 			}
 		}
+
+		function process_info_pekerjaan(){
+
+			$data['title_web'] = 'Ubah Data Pekerjaan Pegawai | Adminpanel Asy-syukriyyah';
+			$data['path_content'] = 'admin/pegawai/edit_info_pegawai';
+
+			$id = $this->uri->segment(3);
+			$pekerjaan = $this->mod->getDataWhere('riwayat_kerja','id_pegawai',$id);
+			$data['pekerjaan']=$pekerjaan;
+			$data['result'] = $this->mpj->getPekerjaan($pekerjaan['id_riwayat_kerja']);
+
+			$riwayat_kerja = $this->mpj->fetchPekerjaanPegawai($pekerjaan['id_riwayat_kerja']);
+				if($riwayat_kerja!=FALSE){
+					foreach ($riwayat_kerja as $rows) {
+							$data['sort_order_'.$rows->sort_order] = $rows->sort_order;
+							$data['tahun_mulai_'.$rows->sort_order] = $rows->tahun_mulai;
+							$data['tahun_selesai_'.$rows->sort_order] = $rows->tahun_selesai;
+							$data['unit_'.$rows->sort_order] = $rows->unit;
+							$data['jabatan_'.$rows->sort_order] = $rows->jabatan;
+							$data['id_riwayat_jabatan_'.$rows->sort_order] = $rows->id_riwayat_jabatan;
+					}
+				}
+
+			$riwayat_kerja_diluar = $this->mpj->fetchPekerjaanPegawaiDiluar($pekerjaan['id_riwayat_kerja']);
+				if($riwayat_kerja_diluar!=FALSE){
+					foreach ($riwayat_kerja_diluar as $rows) {
+							$data['sort_order_diluar_'.$rows->sort_order] = $rows->sort_order;
+							$data['tahun_diluar_'.$rows->sort_order] = $rows->tahun;
+							$data['nama_instansi_'.$rows->sort_order] = $rows->nama_instansi;
+							$data['jabatan_diluar_'.$rows->sort_order] = $rows->jabatan;
+							$data['alasan_keluar_'.$rows->sort_order] = $rows->alasan_keluar;
+							$data['id_riwayat_jabatan_diluar_'.$rows->sort_order] = $rows->id_riwayat_jabatan_diluar;
+					}
+				}
+
+			$this->form_validation->set_rules('id_riwayat_kerja','ID Riwayat Kerja','required');
+			$this->form_validation->set_rules('pegawai','Nama Pegawai','required');
+			$this->form_validation->set_rules('jabatan','Jabatan','required');
+			$this->form_validation->set_rules('unit_kerja','Unit Kerja','required');
+			$this->form_validation->set_rules('unit_kerja_sebelumnya','Unit Kerja Sebelumnya','');
+			$this->form_validation->set_rules('status_aktif','Status','required');
+			$this->form_validation->set_rules('mulai_tugas','Mulai Tugas','');
+			$this->form_validation->set_rules('status_kepegawaian','Status Kepegawaian','required');
+			$this->form_validation->set_rules('calon_tetap','Pengangkatan Sebagai Calon Pegawai Tetap','');
+			$this->form_validation->set_rules('tetap','Pengangkatan Sebagai Pegawai Tetap','');
+			if(!$this->form_validation->run()){
+				$error = validation_errors();
+				$this->session->set_flashdata(array('error'=>$error));
+				redirect(base_url($this->uri->segment(1).'/edit-info-pegawai/'.$id));
+			}
+			else{
+				$data['save'] = $this->mpj->editDetailPekerjaan($_POST,$pekerjaan['id_riwayat_kerja']);
+				redirect(base_url($this->uri->segment(1).'/edit-info-pegawai/'.$id));
+			}
+		}
+
 
   	function delete_pekerjaan(){
 			$id = $this->uri->segment(3);

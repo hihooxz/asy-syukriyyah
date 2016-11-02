@@ -129,7 +129,7 @@ class Mkeluarga extends CI_Model {
 			foreach ($pegawai as $rows) { // looping data
 				if($keluarga != FALSE){ // check if keluarga is available
 					foreach ($keluarga as $rows2) { // looping data
-						
+
 					}
 				} // end if $keluarga
 			} // end foreach $pegawai
@@ -137,7 +137,7 @@ class Mkeluarga extends CI_Model {
 		/*$sql = "
 			SELECT as_pegawai.*
 			FROM as_pegawai
-			WHERE NOT EXISTS(select as_pegawai.* from as_pegawai INNER JOIN as_keluarga ON as_pegawai.id_pegawai = as_keluarga.id_pegawai) 
+			WHERE NOT EXISTS(select as_pegawai.* from as_pegawai INNER JOIN as_keluarga ON as_pegawai.id_pegawai = as_keluarga.id_pegawai)
 		";*/
 		$sql = "
 			SELECT as_pegawai.*
@@ -149,7 +149,7 @@ class Mkeluarga extends CI_Model {
 		if($query->num_rows()>0){
 			return $query->result();
 		}
-		else return FALSE;		
+		else return FALSE;
 	}
 	function getKeluarga($id){
 		$this->db->join('pegawai','pegawai.id_pegawai = keluarga.id_pegawai');
@@ -158,7 +158,7 @@ class Mkeluarga extends CI_Model {
 		if($query->num_rows()>0){
 			return $query->row_array();
 		}
-		else return FALSE;			
+		else return FALSE;
 	}
 	function addDetailKeluarga($data,$id){
 		// input data pegawai & keluarga
@@ -397,7 +397,6 @@ class Mkeluarga extends CI_Model {
 				'nama_ibu' => $data['nama_ibu'],
 				'jumlah_saudara_kandung' => $data['jumlah_saudara_kandung']
         );
-
       $this->db->where('id_keluarga',$id);
       $this->db->update('keluarga',$array);
 	}

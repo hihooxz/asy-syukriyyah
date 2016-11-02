@@ -85,7 +85,7 @@ class Mpekerjaan extends CI_Model {
 				$array['tahun_sertifikasi'] = '';
 			}
 			else{
-				$array['tahun_sertifikasi'] = $data['tahun_sertifikasi'];	
+				$array['tahun_sertifikasi'] = $data['tahun_sertifikasi'];
 			}
 		}
 		if(isset($data['sertifikat'])){
@@ -93,7 +93,7 @@ class Mpekerjaan extends CI_Model {
 			$array['sertifikasi_pendidik'] = '';
 			}
 			else{
-				$array['sertifikasi_pendidik'] = $data['sertifikat'];	
+				$array['sertifikasi_pendidik'] = $data['sertifikat'];
 			}
 		}
 		if(isset($data['calon_tetap'])){
@@ -296,7 +296,7 @@ class Mpekerjaan extends CI_Model {
 		  	$this->db->where('unit_kerja',$id);
 		  	$total += $this->db->count_all_results("pegawai");
   		}*/
-  		$query = $this->db->query("SELECT count(*) as total FROM `as_pegawai` 
+  		$query = $this->db->query("SELECT count(*) as total FROM `as_pegawai`
 INNER JOIN as_riwayat_kerja ON as_riwayat_kerja.id_pegawai = as_pegawai.id_pegawai
 WHERE (unit_kerja = 1 or unit_kerja = 2 or unit_kerja = 3 or unit_kerja = 4 or unit_kerja = 5) and jenis_kelamin = ".$gender." and status_aktif = 0");
   		$result = $query->row_array();
@@ -320,7 +320,7 @@ WHERE (unit_kerja = 1 or unit_kerja = 2 or unit_kerja = 3 or unit_kerja = 4 or u
   	}
   	else if($id=="yayasan"){
   		$total = 0;
-  		$query = $this->db->query("SELECT count(*) as total FROM `as_pegawai` 
+  		$query = $this->db->query("SELECT count(*) as total FROM `as_pegawai`
 INNER JOIN as_riwayat_kerja ON as_riwayat_kerja.id_pegawai = as_pegawai.id_pegawai
 WHERE (unit_kerja = 1 or unit_kerja = 2 or unit_kerja = 3 or unit_kerja = 4 or unit_kerja = 5) and status_kepegawaian = ".$status." and status_aktif = 0");
   		$result = $query->row_array();
@@ -346,7 +346,7 @@ WHERE (unit_kerja = 1 or unit_kerja = 2 or unit_kerja = 3 or unit_kerja = 4 or u
   	}
   	else if($id=="yayasan"){
   		$total = 0;
-  		$query = $this->db->query("SELECT count(*) as total FROM `as_pendidikan` 
+  		$query = $this->db->query("SELECT count(*) as total FROM `as_pendidikan`
 INNER JOIN as_pegawai ON as_pendidikan.id_pegawai = as_pegawai.id_pegawai
 INNER JOIN as_riwayat_kerja ON as_riwayat_kerja.id_pegawai = as_pegawai.id_pegawai
 WHERE (unit_kerja = 1 or unit_kerja = 2 or unit_kerja = 3 or unit_kerja = 4 or unit_kerja = 5) and pendidikan_terakhir = ".$pendidikan." and status_aktif = 0");
@@ -518,7 +518,7 @@ WHERE (unit_kerja = 1 or unit_kerja = 2 or unit_kerja = 3 or unit_kerja = 4 or u
 				$array['status_sertifikasi'] =$data['sertifikasi'];
 			}
 		}
-		
+
 		$this->db->where('id_riwayat_kerja',$id);
 		$this->db->update('riwayat_kerja',$array);
 		return 1;

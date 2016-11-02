@@ -39,6 +39,11 @@
       </div>
 
       <div class="col-xs-9">
+        <?php
+          if($this->session->flashdata('error')){
+            echo $this->session->flashdata('error');
+          }
+         ?>
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane active" id="pegawai">
@@ -203,6 +208,7 @@
             <p class="lead">Data Keluarga</p>
             <form action="<?php echo base_url($this->uri->segment(1).'/process-info-keluarga/'.$this->uri->segment(3))?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal form-label-left" id="form-info">
               <?php echo validation_errors()?>
+              <input type="hidden" name="id_pegawai" value="<?php echo $this->uri->segment(3)?>">
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Pegawai
                 </label>
@@ -220,7 +226,7 @@
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Pekerjaan Pasangan</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="last-name" name="nama_pasangan" required="required" class="form-control col-md-7 col-xs-12" value="<?php if(isset($keluarga['pekerjaan_pasangan'])) echo $keluarga['pekerjaan_pasangan'] ?>" >
+                  <input type="text" id="last-name" name="pekerjaan_pasangan"  class="form-control col-md-7 col-xs-12" value="<?php if(isset($keluarga['pekerjaan_pasangan'])) echo $keluarga['pekerjaan_pasangan'] ?>" >
                 </div>
               </div>
               <div class="form-group">
@@ -233,7 +239,7 @@
                       2 => 'Janda',
                       3 => 'Duda'
                     );
-                  echo form_dropdown('status',$options,$keluarga['status_pernikahan'],'class="form-control" ');
+                  echo form_dropdown('status_pernikahan',$options,$keluarga['status_pernikahan'],'class="form-control" ');
                 ?>
               </div>
               </div>
@@ -328,14 +334,14 @@
                       if(isset($jenis_kelamin_1)){
                         $jk = $jenis_kelamin_1;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                        echo form_dropdown('jenis_kelamin_1',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_1)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -369,14 +375,14 @@
                       if(isset($jenis_kelamin_2)){
                         $jk = $jenis_kelamin_2;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_2',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_2)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -400,7 +406,7 @@
                   <div class="form-group">
                     <input type="text"  name="nama_anak_1" class="form-control" value="<?php if(isset($nama_anak_1)) echo $nama_anak_1?>" >
                       <input type="hidden"  name="sort_order_anak_1" class="form-control" value="1">
-                      <input type="hidden"  name="id_data_keluarga_anak_1" class="form-control" value="<?php if(isset($id_data_keluarga_anak_1)) echo $id_data_keluarga_anak_1?>">
+                      <input type="hidden"  name="id_data_keluarga_anak_1" class="form-control" value="<?php if(isset($id_data_keluarga_anak_1)) echo $id_data_keluarga_anak_1; else echo "-";?>">
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -409,14 +415,14 @@
                       if(isset($jenis_kelamin_anak_1)){
                         $jk = $jenis_kelamin_anak_1;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_anak_1',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_anak_1)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -440,7 +446,7 @@
                   <div class="form-group">
                     <input type="text"   name="nama_anak_2" class="form-control" value="<?php if(isset($nama_anak_2)) echo $nama_anak_2?>"  >
                       <input type="hidden"  name="sort_order_anak_2" class="form-control" value="2">
-                      <input type="hidden"  name="id_data_keluarga_anak_2" class="form-control" value="<?php if(isset($id_data_keluarga_anak_2)) echo $id_data_keluarga_anak_2?>" >
+                      <input type="hidden"  name="id_data_keluarga_anak_2" class="form-control" value="<?php if(isset($id_data_keluarga_anak_2)) echo $id_data_keluarga_anak_2 ; else echo "-";?>" >
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -449,14 +455,14 @@
                       if(isset($jenis_kelamin_anak_2)){
                         $jk = $jenis_kelamin_anak_2;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_anak_2',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_2" class="form-control" value="<?php if(isset($jenis_kelamin_anak_2)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -480,7 +486,7 @@
                   <div class="form-group">
                     <input type="text"  name="nama_anak_3" class="form-control" value="<?php if(isset($nama_anak_3)) echo $nama_anak_3?>" >
                       <input type="hidden"  name="sort_order_anak_3" class="form-control" value="3">
-                      <input type="hidden"  name="id_data_keluarga_anak_3" class="form-control" value="<?php if(isset($id_data_keluarga_anak_3)) echo $id_data_keluarga_anak_3?>">
+                      <input type="hidden"  name="id_data_keluarga_anak_3" class="form-control" value="<?php if(isset($id_data_keluarga_anak_3)) echo $id_data_keluarga_anak_3; else echo "-";?>">
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -489,14 +495,14 @@
                       if(isset($jenis_kelamin_anak_3)){
                         $jk = $jenis_kelamin_anak_3;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_anak_3',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_anak_3)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -520,7 +526,7 @@
                   <div class="form-group">
                     <input type="text"  name="nama_anak_4" class="form-control" value="<?php if(isset($nama_anak_4)) echo $nama_anak_4?>" >
                       <input type="hidden"  name="sort_order_anak_4" class="form-control" value="4">
-                      <input type="hidden"  name="id_data_keluarga_anak_4" class="form-control" value="<?php if(isset($id_data_keluarga_anak_4)) echo $id_data_keluarga_anak_4?>">
+                      <input type="hidden"  name="id_data_keluarga_anak_4" class="form-control" value="<?php if(isset($id_data_keluarga_anak_4)) echo $id_data_keluarga_anak_4; else echo "-";?>">
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -529,14 +535,14 @@
                       if(isset($jenis_kelamin_anak_4)){
                         $jk = $jenis_kelamin_anak_4;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_anak_4',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_4" class="form-control" value="<?php if(isset($jenis_kelamin_anak_4)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -560,7 +566,7 @@
                   <div class="form-group">
                     <input type="text" name="nama_anak_5" class="form-control" value="<?php if(isset($nama_anak_5)) echo $nama_anak_5?>" >
                       <input type="hidden"  name="sort_order_anak_5" class="form-control" value="5">
-                      <input type="hidden"  name="id_data_keluarga_anak_5" class="form-control" value="<?php if(isset($id_data_keluarga_anak_5)) echo $id_data_keluarga_anak_5?>">
+                      <input type="hidden"  name="id_data_keluarga_anak_5" class="form-control" value="<?php if(isset($id_data_keluarga_anak_5)) echo $id_data_keluarga_anak_5; else echo "-";?>">
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -569,14 +575,14 @@
                       if(isset($jenis_kelamin_anak_5)){
                         $jk = $jenis_kelamin_anak_5;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_anak_5',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_anak_5)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-2">
                     <?php
@@ -615,7 +621,7 @@
                     <div class="form-group">
                       <input type="text"  name="nama_sk_1" class="form-control" value="<?php if(isset($nama_sk_1)) echo $nama_sk_1?>" >
                       <input type="hidden"  name="sort_order_sk_1" class="form-control" value="1">
-                      <input type="hidden"  name="id_saudara_kandung_1" class="form-control" value="<?php if(isset($id_saudara_kandung_1)) echo $id_saudara_kandung_1?>">
+                      <input type="hidden"  name="id_saudara_kandung_1" class="form-control" value="<?php if(isset($id_saudara_kandung_1)) echo $id_saudara_kandung_1; else echo "-";?>">
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -627,14 +633,14 @@
                       if(isset($jenis_kelamin_sk_1)){
                         $jk = $jenis_kelamin_sk_1;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_sk_1',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_sk_1)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-3">
                   <input type="text"  name="pekerjaan_sk_1" class="form-control" value="<?php if(isset($pekerjaan_sk_1)) echo $pekerjaan_sk_1?>" >
@@ -648,7 +654,7 @@
                     <div class="form-group">
                       <input type="text"  name="nama_sk_2" class="form-control" value="<?php if(isset($nama_sk_2)) echo $nama_sk_2?>" >
                       <input type="hidden"  name="sort_order_sk_2" class="form-control" value="2">
-                      <input type="hidden"  name="id_saudara_kandung_2" class="form-control" value="<?php if(isset($id_saudara_kandung_2)) echo $id_saudara_kandung_2?>">
+                      <input type="hidden"  name="id_saudara_kandung_2" class="form-control" value="<?php if(isset($id_saudara_kandung_2)) echo $id_saudara_kandung_2; else echo "-";?>">
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -660,14 +666,14 @@
                       if(isset($jenis_kelamin_sk_2)){
                         $jk = $jenis_kelamin_sk_2;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                      echo form_dropdown('jenis_kelamin_sk_2',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_sk_2)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-3">
                   <input type="text"  name="pekerjaan_sk_2" class="form-control" value="<?php if(isset($pekerjaan_sk_2)) echo $pekerjaan_sk_2?>" >
@@ -681,7 +687,7 @@
                     <div class="form-group">
                       <input type="text"  name="nama_sk_3" class="form-control" value="<?php if(isset($nama_sk_3)) echo $nama_sk_3?>" >
                       <input type="hidden"  name="sort_order_sk_3" class="form-control" value="3">
-                      <input type="hidden"  name="id_saudara_kandung_3" class="form-control" value="<?php if(isset($id_saudara_kandung_3)) echo $id_saudara_kandung_3?>">
+                      <input type="hidden"  name="id_saudara_kandung_3" class="form-control" value="<?php if(isset($id_saudara_kandung_3)) echo $id_saudara_kandung_3; else echo "-";?>">
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -693,14 +699,14 @@
                       if(isset($jenis_kelamin_sk_3)){
                         $jk = $jenis_kelamin_sk_3;
                         if($jk == 1)
-                          $jk =  "L";
+                          $jk =  1;
                         else if($jk == 0)
-                          $jk = "P";
+                          $jk = 0;
                       }
                       else $jk = '';
-
+                        echo form_dropdown('jenis_kelamin_sk_3',$options,$jk,'class="form-control" ');
                     ?>
-                     <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_sk_3)) echo $jk?>" >
+
                 </div>
                 <div class="col-md-3">
                   <input type="text"  name="pekerjaan_sk_3" class="form-control" value="<?php if(isset($pekerjaan_sk_3)) echo $pekerjaan_sk_3?>" >
@@ -1186,7 +1192,9 @@
           </form>
           </div>
           <div class="tab-pane" id="pekerjaan">
-            <form class="form-horizontal form-label-left">
+              <form action="<?php echo base_url($this->uri->segment(1).'/process-info-pekerjaan/'.$this->uri->segment(3))?>" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal form-label-left" id="form-info">
+                <input type="hidden" name="id_riwayat_kerja" value="<?php echo $pekerjaan['id_riwayat_kerja'] ?>">
+                <?php echo validation_errors()?>
                 <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Pegawai
             </label>
@@ -1339,17 +1347,19 @@
           <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="Tahun " name="tahun_mulai_1" class="form-control" value="<?php if(isset($pekerjaan['tahun_mulai_'.$i])) echo $pekerjaan['tahun_mulai_'.$i] ?>" >
+                  <input type="hidden" name="id_riwayat_jabatan_<?php echo $i;?>" value="<?php if(isset($pekerjaan['id_riwayat_jabatan_'.$i])) echo $pekerjaan['id_riwayat_jabatan_'.$i] ?>">
+                    <input type="hidden"  name="sort_order_<?php echo $i?>" class="form-control" value="<?php echo $i?>">
+                  <input type="text" placeholder="Tahun " name="tahun_mulai_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['tahun_mulai_'.$i])) echo $pekerjaan['tahun_mulai_'.$i] ?>" >
                 </div>
               </div>
               <div class="col-md-3">
-                  <input type="text" placeholder="Tahun " name="tahun_selesai_1" class="form-control" value="<?php if(isset($pekerjaan['tahun_selesai_'.$i])) echo $pekerjaan['tahun_selesai_'.$i] ?>" >
+                  <input type="text" placeholder="Tahun " name="tahun_selesai_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['tahun_selesai_'.$i])) echo $pekerjaan['tahun_selesai_'.$i] ?>" >
               </div>
             <div class="col-md-3">
-              <input type="text"  placeholder="Unit " name="unit_1" class="form-control" value="<?php if(isset($pekerjaan['unit_'.$i])) echo $pekerjaan['unit_'.$i] ?>" >
+              <input type="text"  placeholder="Unit " name="unit_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['unit_'.$i])) echo $pekerjaan['unit_'.$i] ?>" >
             </div>
             <div class="col-md-3">
-              <input type="text" placeholder="Jabatan" name="jabatan_1" class="form-control" value="<?php if(isset($pekerjaan['jabatan_'.$i])) echo $pekerjaan['jabatan_'.$i] ?>" >
+              <input type="text" placeholder="Jabatan" name="jabatan_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['jabatan_'.$i])) echo $pekerjaan['jabatan_'.$i] ?>" >
             </div>
           </div>
           <?php
@@ -1377,18 +1387,20 @@
             <div class="col-md-6">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" placeholder="Tahun " name="tahun_diluar_1" class="form-control" value="<?php if(isset($pekerjaan['tahun_diluar_'.$i])) echo $pekerjaan['tahun_diluar_'.$i]?>" >
+                    <input type="hidden" name="id_riwayat_jabatan_diluar<?php echo $i;?>" value="<?php if(isset($pekerjaan['id_riwayat_jabatan_diluar'.$i])) echo $pekerjaan['id_riwayat_jabatan_diluar'.$i] ?>">
+                    <input type="hidden"  name="sort_order_diluar_<?php echo $i?>" class="form-control" value="<?php echo $i?>">
+                  <input type="text" placeholder="Tahun " name="tahun_diluar_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['tahun_diluar_'.$i])) echo $pekerjaan['tahun_diluar_'.$i]?>" >
                 </div>
               </div>
               <div class="col-md-5">
-                <input type="text" placeholder="Instansi" name="nama_instansi_1" class="form-control" value="<?php if(isset($pekerjaan['nama_instansi_'.$i])) echo $pekerjaan['nama_instansi_'.$i]?>" >
+                <input type="text" placeholder="Instansi" name="nama_instansi_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['nama_instansi_'.$i])) echo $pekerjaan['nama_instansi_'.$i]?>" >
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" placeholder="Nama Lembaga " name="jabatan_diluar_1" class="form-control" value="<?php if(isset($pekerjaan['jabatan_diluar_'.$i])) echo $pekerjaan['jabatan_diluar_'.$i]?>" >
+              <input type="text" placeholder="Nama Lembaga " name="jabatan_diluar_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['jabatan_diluar_'.$i])) echo $pekerjaan['jabatan_diluar_'.$i]?>" >
             </div>
             <div class="col-md-3">
-              <input type="text" placeholder="Alasan" name="alasan_keluar_1" class="form-control" value="<?php if(isset($pekerjaan['alasan_keluar_'.$i])) echo $pekerjaan['alasan_keluar_'.$i]?>" >
+              <input type="text" placeholder="Alasan" name="alasan_keluar_<?php echo $i?>" class="form-control" value="<?php if(isset($pekerjaan['alasan_keluar_'.$i])) echo $pekerjaan['alasan_keluar_'.$i]?>" >
             </div>
           </div>
           <?php
