@@ -343,26 +343,28 @@ class Mkeluarga extends CI_Model {
 			$i = 0;
 			for ($i=1;$i<=3;$i++){
 					if($data['id_saudara_kandung_'.$i] == '-'){
-						if($data['nama_sk_'.$i] != ''){
-							$array = array(
-									'nama_saudara_kandung' => $data['nama_sk_'.$i],
-									'jenis_kelamin' => $data['jenis_kelamin_sk_'.$i],
-									'sort_order' => $data['sort_order_sk_'.$i],
-									'alamat' => $data['alamat_sk_'.$i],
-									'id_keluarga' => $id
-								);
-								if(isset($data['ttl_sk_'.$i])){
-									if($data['ttl_sk_'.$i] != ""){
-										$array['tanggal_lahir'] = $data['ttl_sk_'.$i];
+						if(isset($data['nama_sk_'.$i])){
+							if($data['nama_sk_'.$i] != ''){
+								$array = array(
+										'nama_saudara_kandung' => $data['nama_sk_'.$i],
+										'jenis_kelamin' => $data['jenis_kelamin_sk_'.$i],
+										'sort_order' => $data['sort_order_sk_'.$i],
+										'alamat' => $data['alamat_sk_'.$i],
+										'id_keluarga' => $id
+									);
+									if(isset($data['ttl_sk_'.$i])){
+										if($data['ttl_sk_'.$i] != ""){
+											$array['tanggal_lahir'] = $data['ttl_sk_'.$i];
+										}
 									}
-								}
-								if(isset($data['pekerjaan_sk_'.$i])){
-									if($data['pekerjaan_sk_'.$i] != ""){
-										$array['pekerjaan'] = $data['pekerjaan_sk_'.$i];
+									if(isset($data['pekerjaan_sk_'.$i])){
+										if($data['pekerjaan_sk_'.$i] != ""){
+											$array['pekerjaan'] = $data['pekerjaan_sk_'.$i];
+										}
 									}
+								$this->db->insert('saudara_kandung',$array);
 								}
-							$this->db->insert('saudara_kandung',$array);
-							}
+						}
 					} //end of id_saudara_kandung_
 					else{
 						$array = array(
