@@ -182,6 +182,12 @@ class Mkepegawaian extends CI_Model {
 		if(isset($data['jenis_kelamin'])){
 				$array['jenis_kelamin'] = $data['jenis_kelamin'];
 		}
+		if(isset($data['nik'])){
+				if($data['nik']!=FALSE){
+					$array['nik'] = $data['nik'];
+				}
+				$array['nik'] = $data['nik'];
+		}
       $this->db->where('id_pegawai',$id);
       $this->db->update('pegawai',$array);
       return 1;

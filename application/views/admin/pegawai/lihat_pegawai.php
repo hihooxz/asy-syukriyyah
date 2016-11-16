@@ -45,6 +45,13 @@
             <p class="lead">Info Personal Pegawai</p>
             <form action="" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal form-label-left" id="form-info">
               <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">NIPA
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="nik" value="<?php echo $result['nik']?>" disabled>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Lengkap
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -319,7 +326,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_1)) echo $jk?>" disabled>
                 </div>
@@ -330,7 +337,7 @@
                         $kandung = $kandung_1;
                       }
                       else $kandung = '';
-                      echo form_dropdown('kandung_1',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('kandung_1',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -360,7 +367,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_2)) echo $jk?>" disabled>
                 </div>
@@ -371,7 +378,7 @@
                         $kandung = $kandung_2;
                       }
                       else $kandung = '';
-                      echo form_dropdown('kandung_2',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('kandung_2',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -400,7 +407,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_anak_1)) echo $jk?>" disabled>
                 </div>
@@ -411,7 +418,7 @@
                         $kandung = $status_anak_1;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_1',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('status_anak_1',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -440,7 +447,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_2" class="form-control" value="<?php if(isset($jenis_kelamin_anak_2)) echo $jk?>" disabled>
                 </div>
@@ -451,7 +458,7 @@
                         $kandung = $status_anak_2;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_2',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('status_anak_2',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -480,7 +487,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_1" class="form-control" value="<?php if(isset($jenis_kelamin_anak_3)) echo $jk?>" disabled>
                 </div>
@@ -491,7 +498,7 @@
                         $kandung = $status_anak_3;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_3',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('status_anak_3',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -520,7 +527,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_4" class="form-control" value="<?php if(isset($jenis_kelamin_anak_4)) echo $jk?>" disabled>
                 </div>
@@ -531,7 +538,7 @@
                         $kandung = $status_anak_4;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_4',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('status_anak_4',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -560,7 +567,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_anak_5)) echo $jk?>" disabled>
                 </div>
@@ -571,7 +578,7 @@
                         $kandung = $status_anak_5;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_5',$options,$kandung,'class="form-control" disabled'); 
+                      echo form_dropdown('status_anak_5',$options,$kandung,'class="form-control" disabled');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -618,7 +625,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_sk_1)) echo $jk?>" disabled>
                 </div>
@@ -651,7 +658,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_sk_2)) echo $jk?>" disabled>
                 </div>
@@ -684,7 +691,7 @@
                           $jk = "P";
                       }
                       else $jk = '';
-                      
+
                     ?>
                      <input type="text"  name="nama_pegawai_5" class="form-control" value="<?php if(isset($jenis_kelamin_sk_3)) echo $jk?>" disabled>
                 </div>
@@ -945,7 +952,7 @@
                             <input type="hidden" name="id_nonformal1" value="<?php if(isset($id_nonformal_1)) echo $id_nonformal_1?>">
                             <input type="hidden" name="sort_order1" value="1">
                           <div class="form-group">
-                            <input type="text"  placeholder="Tahun " name="tahun1" class="form-control" 
+                            <input type="text"  placeholder="Tahun " name="tahun1" class="form-control"
                             value="<?php if(isset($tahun_1)) echo $tahun_1?>" disabled>
                           </div>
                         </div>
@@ -1062,7 +1069,7 @@
                             <input type="hidden" name="id_nonformal_td1" value="<?php if(isset($id_nonformal_td1)) echo $id_nonformal_td1?>">
                             <input type="hidden" name="sort_ordertd1" value="1">
                           <div class="form-group">
-                            <input type="text"  placeholder="Tahun " name="tahuntd1" class="form-control" 
+                            <input type="text"  placeholder="Tahun " name="tahuntd1" class="form-control"
                             value="<?php if(isset($tahun_td1)) echo $tahun_td1?>" disabled>
                           </div>
                         </div>

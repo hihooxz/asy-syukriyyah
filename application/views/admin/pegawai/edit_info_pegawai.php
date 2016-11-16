@@ -38,7 +38,7 @@
         </ul>
       </div>
 
-      <div class="col-xs-9">
+      <div class="col-xs-10">
         <?php
           if($this->session->flashdata('error')){
             echo $this->session->flashdata('error');
@@ -55,6 +55,13 @@
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="file" id="foto_pegawai" class="form-control col-md-7 col-xs-12" name="userfile">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">NIPA
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="nik" value="<?php echo $result['nik']?>">
                 </div>
               </div>
               <div class="form-group">
@@ -251,7 +258,8 @@
                       0 => 0,
                       1 => 1,
                       2 => 2,
-                      3 => 3
+                      3 => 3,
+                      4 => 'Lebih Dari 3'
                     );
                   echo form_dropdown('anak_kandung',$options,$keluarga['anak_kandung'],'class="form-control" ');
                 ?>
@@ -265,7 +273,8 @@
                       0 => 0,
                       1 => 1,
                       2 => 2,
-                      3 => 3
+                      3 => 3,
+                      4 => 'Lebih dari 3'
                     );
                   echo form_dropdown('bukan_anak_kandung',$options,$keluarga['bukan_anak_kandung'],'class="form-control" ');
                 ?>
@@ -279,7 +288,8 @@
                       0 => 0,
                       1 => 1,
                       2 => 2,
-                      3 => 3
+                      3 => 3,
+                      4 => 'Lebih dari 3'
                     );
                   echo form_dropdown('jumlah_saudara_kandung',$options,$keluarga['jumlah_saudara_kandung'],'class="form-control" ');
                 ?>

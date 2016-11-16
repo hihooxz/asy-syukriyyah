@@ -82,6 +82,35 @@ class PDF extends FPDF
 			                          $uk = "STAI";
 			                        else if($rows->unit_kerja == 13)
 			          								$uk = "Lainnya";
+																if($rows->unit_kerja_sebelumnya == 0)
+										                          $uks = "Tidak Ada";
+										                        else if($rows->unit_kerja_sebelumnya == 1)
+										                          $uks = "Dept. Support";
+										                        else if($rows->unit_kerja_sebelumnya == 2)
+										                          $uks = "LPIA";
+										                        else if($rows->unit_kerja_sebelumnya == 3)
+										                          $uks = "LDSM";
+										                        else if($rows->unit_kerja_sebelumnya == 4)
+										                          $uks = "LPP";
+										                        else if($rows->unit_kerja_sebelumnya == 5)
+										                          $uks = "LEKU";
+										                        else if($rows->unit_kerja_sebelumnya == 6)
+										                          $uks = "TK Islam";
+										                        else if($rows->unit_kerja_sebelumnya == 7)
+										                          $uks = "SDIT";
+										                        else if($rows->unit_kerja_sebelumnya == 8)
+										                          $uks = "MI Plus";
+										                        else if($rows->unit_kerja_sebelumnya == 9)
+										                          $uks = "MTS Plus";
+										                        else if($rows->unit_kerja_sebelumnya == 10)
+										                          $uks = "SMPIT";
+										                        else if($rows->unit_kerja_sebelumnya == 11)
+										                          $uks = "SMAIT";
+										                        else if($rows->unit_kerja_sebelumnya == 12)
+										                          $uks = "STAI";
+										                        else if($rows->unit_kerja_sebelumnya == 13)
+										          								$uks = "Lainnya";
+
 																if( $rows->pendidikan_terakhir == 0)
 					                        $pk = "Tidak Sekolah";
 					                      else if( $rows->pendidikan_terakhir == 1)
@@ -373,9 +402,9 @@ class PDF extends FPDF
 											$this->cell(10);
                         					$this->cell(2,10,':',0,0,'L',0);
                         					if($rows->unit_kerja_sebelumnya == 0){
-                        						$unit_kerja = "-";
+                        						$unit_kerja	 = "-";
                         					}
-                        					else $unit_kerja = $rows->unit_kerja_sebelumnya;
+                        					else $unit_kerja = $uks;
 											$this->cell(36,10,$unit_kerja,0,1,'L',1);
 											$this->cell(36,10,'',0,1,'L',1);
 											$this->cell($space_left+15,10,'Mulai Bertugas',0,0,'L',1);
@@ -424,7 +453,7 @@ class PDF extends FPDF
 												$this->cell(30,6,$rows_jabatan->tahun_mulai,1,0,'C',1);
 												$this->cell(30,6,$rows_jabatan->tahun_selesai,1,0,'C',1);
 												$this->cell(60,6,$rows_jabatan->unit,1,0,'C',1);
-												$this->cell(60,6,$rows_jabatan->jabatan,1,1,'C',1);	
+												$this->cell(60,6,$rows_jabatan->jabatan,1,1,'C',1);
 												}
 											}
 											$this->Ln(5);
@@ -442,7 +471,7 @@ class PDF extends FPDF
 												$this->cell(30,6,$rows_jabatan_diluar->tahun,1,0,'C',1);
 												$this->cell(60,6,$rows_jabatan_diluar->nama_instansi,1,0,'C',1);
 												$this->cell(40,6,$rows_jabatan_diluar->jabatan,1,0,'C',1);
-												$this->cell(50,6,$rows_jabatan_diluar->alasan_keluar,1,1,'C',1);	
+												$this->cell(50,6,$rows_jabatan_diluar->alasan_keluar,1,1,'C',1);
 												}
 											}
 											$this->ln(20);
@@ -562,7 +591,7 @@ class PDF extends FPDF
 													$this->cell(60,6,$rows_sk->alamat,1,1,'C',1);
 												}
 											}
-										
+
 										else{
 
 										}

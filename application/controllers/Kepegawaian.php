@@ -412,7 +412,7 @@ class Kepegawaian extends CI_Controller {
 		}
 
     function process_info_pegawai(){
-  			$data['title_web'] = 'Ubah Pegawai | Adminpanel Vorcee';
+  			$data['title_web'] = 'Ubah Pegawai | Adminpanel Asy-syukriyyah';
   			$data['path_content'] = 'admin/pegawai/edit_info_pegawai';
   			$id=$this->uri->segment(3);
   			$data['result']=$this->mod->getDataWhere('pegawai','id_pegawai',$id);

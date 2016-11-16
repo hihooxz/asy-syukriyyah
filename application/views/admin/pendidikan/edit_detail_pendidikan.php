@@ -353,8 +353,7 @@
                             <input type="hidden" name="id_nonformal1" value="<?php if(isset($id_nonformal_1)) echo $id_nonformal_1?>">
                             <input type="hidden" name="sort_order1" value="1">
                           <div class="form-group">
-                            <input type="text"  placeholder="Tahun " name="tahun1" class="form-control"
-                            value="<?php if(isset($tahun_1)) echo $tahun_1?>">
+                            <input type="text"  placeholder="Tahun " name="tahun1" class="form-control"  value="<?php if(isset($tahun_1)) echo $tahun_1?>">
                           </div>
                         </div>
                         <div class="col-md-5">

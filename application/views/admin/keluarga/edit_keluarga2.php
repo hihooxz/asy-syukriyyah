@@ -150,7 +150,7 @@
                         $jk = $jenis_kelamin_1;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_1',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_1',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -160,7 +160,7 @@
                         $kandung = $kandung_1;
                       }
                       else $kandung = '';
-                      echo form_dropdown('kandung_1',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('kandung_1',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -186,7 +186,7 @@
                         $jk = $jenis_kelamin_2;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_2',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_2',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -196,7 +196,7 @@
                         $kandung = $kandung_2;
                       }
                       else $kandung = '';
-                      echo form_dropdown('kandung_2',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('kandung_2',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -221,7 +221,7 @@
                         $jk = $jenis_kelamin_anak_1;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_anak_1',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_anak_1',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -231,7 +231,7 @@
                         $kandung = $status_anak_1;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_1',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('status_anak_1',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -256,7 +256,7 @@
                         $jk = $jenis_kelamin_anak_2;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_anak_2',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_anak_2',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -266,7 +266,7 @@
                         $kandung = $status_anak_2;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_2',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('status_anak_2',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -291,7 +291,7 @@
                         $jk = $jenis_kelamin_anak_3;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_anak_3',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_anak_3',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -301,7 +301,7 @@
                         $kandung = $status_anak_3;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_3',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('status_anak_3',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -326,7 +326,7 @@
                         $jk = $jenis_kelamin_anak_1;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_anak_4',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_anak_4',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -336,7 +336,7 @@
                         $kandung = $status_anak_4;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_4',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('status_anak_4',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -361,7 +361,7 @@
                         $jk = $jenis_kelamin_anak_5;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_anak_5',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_anak_5',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-2">
@@ -371,7 +371,7 @@
                         $kandung = $status_anak_5;
                       }
                       else $kandung = '';
-                      echo form_dropdown('status_anak_5',$options,$kandung,'class="form-control"'); 
+                      echo form_dropdown('status_anak_5',$options,$kandung,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -414,7 +414,7 @@
                         $jk = $jenis_kelamin_sk_1;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_sk_1',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_sk_1',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -442,7 +442,7 @@
                         $jk = $jenis_kelamin_sk_2;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_sk_2',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_sk_2',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
@@ -470,7 +470,7 @@
                         $jk = $jenis_kelamin_sk_3;
                       }
                       else $jk = '';
-                      echo form_dropdown('jenis_kelamin_sk_3',$options,$jk,'class="form-control"'); 
+                      echo form_dropdown('jenis_kelamin_sk_3',$options,$jk,'class="form-control"');
                     ?>
                 </div>
                 <div class="col-md-3">
