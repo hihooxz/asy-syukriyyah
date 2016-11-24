@@ -134,9 +134,11 @@ class Mpendidikan extends CI_Model {
 								'nama_instansi' => $data['nama_instansi'.$i],
 								'id_pendidikan' => $id
 							);
+							if(isset($data['jurusan'.$i])){
 							if($data['jurusan'.$i] != ""){
 								$array['jurusan'] = $data['jurusan'.$i];
 							}
+						}
 						$this->db->insert('pendidikan_formal',$array);
 					}
 				}
@@ -155,8 +157,10 @@ class Mpendidikan extends CI_Model {
 								'nama_instansi' => $data['nama_instansi'.$i],
 								'id_pendidikan' => $id
 							);
-							if($data['jurusan'.$i] != ""){
-								$array['jurusan'] = $data['jurusan'.$i];
+							if(isset($data['jurusan'.$i])){
+								if($data['jurusan'.$i] != ""){
+									$array['jurusan'] = $data['jurusan'.$i];
+								}
 							}
 						$this->db->insert('pendidikan_formal',$array);
 						} //end of tahun masuk
@@ -487,7 +491,7 @@ class Mpendidikan extends CI_Model {
 				}
 			}
 		}
-	}	
+	}
 	function getPendidikan($id){
 		$this->db->where('id_pendidikan',$id);
 		$this->db->join('pegawai','pegawai.id_pegawai = pendidikan.id_pegawai');

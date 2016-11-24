@@ -751,7 +751,7 @@
                         <h4>Program / Jurusan</h4>
                       </div>
                     </div>
-                    <input type="hidden" name="id_pendidikan_normal" value="<?php echo $this->uri->segment(3); ?>">
+                    <input type="hidden" name="id_pendidikan_normal" value="<?php echo $pendidikan['id_pendidikan'] ?>">
                     <div class="row">
                       <div class="col-md-1">
                         <h4>SD</h4>
@@ -791,8 +791,8 @@
                           <input type="text"  placeholder="Tahun Keluar" name="tahun_selesai2" class="form-control" value="<?php if(isset($tahun_selesai_2)) echo $tahun_selesai_2?>" >
                         </div>
                         </div>
-                        <div class="col-md-3">
                         <input type="text"  placeholder="Nama Sekolah / PT" name="nama_instansi2" class="form-control" value="<?php if(isset($nama_instansi_2)) echo $nama_instansi_2?>" >
+                        <div class="col-md-3">
                         </div>
                         <div class="col-md-3">
                         <input type="text"  placeholder="Program / Jurusan" name="jurusan2" class="form-control" value="<?php if(isset($jurusan_2)) echo $jurusan_2?>" >
